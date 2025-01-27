@@ -32,9 +32,7 @@ Eine genaue Beschreibung der für den Saugroporter verfügbaren Befehlsumfang ka
 Notwendige Voraussetzung ist eine funktionsfähige und laufende Installation von [Tuya2Mqtt](https://github.com/Wilkware/tuya2mqtt). Dessen Installation, Konfiguration und der Betrieb ist hier beschrieben: [README](https://github.com/Wilkware/tuya2mqtt/blob/main/README.md).  
 Dort findet man ebenfalls die unterstützten Tuya Geräte.
 
-### 2. Voraussetzungen
-
-* IP-Symcon ab Version 7.0
+Getestet mit meinem Saugroboter P20 von AIRROBO.
 
 ### 3. Installation
 
@@ -113,6 +111,14 @@ Das Modul stellt keine direkten Funktionsaufrufe zur Verfügung.
 v1.0.20250125
 
 * _NEU_: Initialversion
+
+## Danksagung
+
+Ich möchte mich für die Unterstützung bei der Entwicklung dieses Moduls bedanken bei ...
+
+* _KaiS_ : für seine Vorarbeit mit dem __Modul TuyaMqtt__ 👍
+
+Vielen Dank an Euch!
 
 ## Entwickler
 

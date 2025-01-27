@@ -4,12 +4,11 @@
 [![Product](https://img.shields.io/badge/Symcon%20Version-7.0-blue.svg?style=flat-square)](https://www.symcon.de/produkt/)
 [![Licence](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-IP-Symcon Modulbibliothek für das Steuern ....
+IP-Symcon Modulbibliothek für Tuya-Geräten, welche eine lokale Steuerung (ohne Cloud) unterstützen.
 
 Folgende Module beinhaltet diese Bibliothek:
 
-- __Vacuum Cleaner (Saugroboter)__ ([Dokumentation](VacuumCleaner))  
-    Abruf verschiedener Daten-Endpunkte über die lokale Schnittstelle.
+- __Vacuum Cleaner (Saugroboter)__ ([Dokumentation](VacuumCleaner))
 
 ## Historie
 
