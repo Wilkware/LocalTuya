@@ -136,7 +136,7 @@ class VacuumCleaner extends IPSModule
         $topic = $this->ReadPropertyString('MQTTTopic');
 
         // Check setup
-        if(empty($base) || empty($tobic)) {
+        if (empty($base) || empty($tobic)) {
             // Set filter
             $filter = preg_quote($this->ReadPropertyString('MQTTBaseTopic') . '/' . $this->ReadPropertyString('MQTTTopic'));
             $this->SendDebug(__FUNCTION__, 'Filter: .*' . $filter . '.*', 0);
@@ -222,7 +222,7 @@ class VacuumCleaner extends IPSModule
             case 'suction':
             case 'volume_set':
             case 'clean_speed':
-                $this->SendMQTT($ident. '/command', strval($value));
+                $this->SendMQTT($ident . '/command', strval($value));
                 //$this->SetValue($ident, $value);
                 break;
             default:
@@ -291,7 +291,7 @@ class VacuumCleaner extends IPSModule
             $this->SetValueString('language', strval($payload));
         }
     }
-    
+
     /**
      * Send command to MQTT server.
      *
@@ -309,7 +309,7 @@ class VacuumCleaner extends IPSModule
         $server['Topic'] = $this->ReadPropertyString('MQTTBaseTopic') . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $topic;
         $server['Payload'] = $payload;
         $json = json_encode($server, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__.'MQTT Server', $json, 0);
+        $this->SendDebug(__FUNCTION__ . 'MQTT Server', $json, 0);
         $resultServer = @$this->SendDataToParent($json);
         return $resultServer === false;
     }
