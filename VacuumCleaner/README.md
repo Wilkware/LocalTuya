@@ -112,14 +112,6 @@ v1.0.20250125
 
 * _NEU_: Initialversion
 
-## Danksagung
-
-Ich möchte mich für die Unterstützung bei der Entwicklung dieses Moduls bedanken bei ...
-
-* _KaiS_ : für seine Vorarbeit mit dem __Modul TuyaMqtt__ 👍
-
-Vielen Dank an Euch!
-
 ## Entwickler
 
 Seit nunmehr über 10 Jahren fasziniert mich das Thema Haussteuerung. In den letzten Jahren betätige ich mich auch intensiv in der IP-Symcon Community und steuere dort verschiedenste Skript und Module bei. Ihr findet mich dort unter dem Namen @pitti ;-)
