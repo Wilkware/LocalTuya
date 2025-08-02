@@ -2,9 +2,9 @@
 
 [![Version](https://img.shields.io/badge/Symcon-PHP--Modul-red.svg?style=flat-square)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
 [![Product](https://img.shields.io/badge/Symcon%20Version-7.2-blue.svg?style=flat-square)](https://www.symcon.de/produkt/)
-[![Version](https://img.shields.io/badge/Modul%20Version-1.1.20250802-orange.svg?style=flat-square)](https://github.com/Wilkware/LocalTuya2MQTT)
+[![Version](https://img.shields.io/badge/Modul%20Version-1.1.20250802-orange.svg?style=flat-square)](https://github.com/Wilkware/LocalTuya)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![Actions](https://img.shields.io/github/actions/workflow/status/wilkware/LocalTuya2MQTT/style.yml?branch=main&label=CheckStyle&style=flat-square)](https://github.com/Wilkware/LocalTuya2MQTT/actions)
+[![Actions](https://img.shields.io/github/actions/workflow/status/wilkware/LocalTuya/ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/Wilkware/LocalTuya/actions)
 
 Das Modul bietet die Möglichkeit, mit einem kombatiblen Deckenventilator über das lokale Netzwerk zu kommunizieren.
 
@@ -37,7 +37,7 @@ Getestet mit meinem Deckenventilator WINDCALM von CREATE.
 
 * Über den Modul Store das Modul _Tuya Saugroboter_ installieren.
 * Alternativ Über das Modul-Control folgende URL hinzufügen.  
-`https://github.com/Wilkware/LocalTuya2MQTT` oder `git://github.com/Wilkware/LocalTuya2MQTT.git`
+`https://github.com/Wilkware/LocalTuya` oder `git://github.com/Wilkware/LocalTuya.git`
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
