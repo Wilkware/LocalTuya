@@ -11,12 +11,17 @@ Folgende Module beinhaltet diese Bibliothek:
 - __Vacuum Cleaner (Saugroboter)__ ([Dokumentation](VacuumCleaner))
 - __Ceiling Fan (Deckenventilator)__ ([Dokumentation](CeilingFan))
 
-## Historie
+## 📜 Historie
 
 - 2025-08-02: Modul *Ceiling Fan (Deckenventilator)*
 - 2025-01-25: Modul *Vacuum Cleaner (Saugroboter)*
 
-## Danksagung
+## 🪧 Voraussetzung
+
+Notwendige Voraussetzung ist eine funktionsfähige und laufende Installation von [Tuya2Mqtt](https://github.com/Wilkware/tuya2mqtt). Dessen Installation, Konfiguration und der Betrieb ist hier beschrieben: [README](https://github.com/Wilkware/tuya2mqtt/blob/main/README.md).  
+Dort findet man ebenfalls die unterstützten Tuya Geräte.
+
+## 🙏 Danksagung
 
 Ich möchte mich für die Unterstützung bei der Entwicklung dieses Moduls bedanken bei ...
 
@@ -24,19 +29,19 @@ Ich möchte mich für die Unterstützung bei der Entwicklung dieses Moduls bedan
 
 Vielen Dank!
 
-## Entwickler
+## 👨‍💻Entwickler
 
 Seit nunmehr über 10 Jahren fasziniert mich das Thema Haussteuerung. In den letzten Jahren betätige ich mich auch intensiv in der IP-Symcon Community und steuere dort verschiedenste Skript und Module bei. Ihr findet mich dort unter dem Namen @pitti ;-)
 
 [![GitHub](https://img.shields.io/badge/GitHub-@wilkware-181717.svg?style=for-the-badge&logo=github)](https://wilkware.github.io/)
 
-## Spenden
+## 💰 Spenden
 
 Die Software ist für die nicht kommerzielle Nutzung kostenlos, über eine Spende bei Gefallen der Bibliothek würde ich mich freuen.
 
 [![PayPal](https://img.shields.io/badge/PayPal-spenden-00457C.svg?style=for-the-badge&logo=paypal)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8816166)
 
-## Lizenz
+## ©️ Lizenz
 
 Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International
 
