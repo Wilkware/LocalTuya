@@ -1,0 +1,30 @@
+{
+    "translations": {
+        "de": {
+            "Ceiling Fan": "Deckenventilator",
+            "Tuya Ceiling Fan": "Tuya Deckenventilator",
+            "Tuya device (Ceiling Fan)": "Tuya Gerät (Deckenventilator)",
+            "The module offers the option of communicating with a compatible ceiling fan via the local network.": "Das Modul bietet die Möglichkeit, über das lokale Netzwerk mit einem kompatiblen Deckenventilator zu kommunizieren.",
+            "📳 Device information ...": "📳 Geräteinformationen ...",
+            "⚙️ Advanced settings ...": "⚙️ Erweiterte Einstellungen ...",
+            "Status": "Status",
+            "Light": "Licht",
+            "Color temp": "Farbtemperatur",
+            "Fan": "Ventilator",
+            "Direction": "Richtung",
+            "Speed": "Geschwindigkeit",
+            "Countdown left": "Verbleibende Zeit",
+            "Beep": "Piepton",
+            "Level ": "Stufe ",
+            "Warm": "Warm",
+            "Neutral": "Neutral",
+            "Cool": "Kühl",
+            "Forward": "Vorwärts",
+            "Reverse": "Rückwärts",
+            "Update": "Aktualisieren",
+            "MQTT settings incorrect": "MQTT Einstellungen fehlerhaft",
+            "🎗️ Source code, donation and licence ...": "🎗️ Quellcode, Spende und Lizenz ...",
+            "The software is free of charge for non-commercial use, I would appreciate a donation if you like the module.": "Die Software ist für die nicht kommerzielle Nutzung kostenlos, über eine Spende bei Gefallen des Moduls würde ich mich sehr freuen."
+        }
+    }
+}

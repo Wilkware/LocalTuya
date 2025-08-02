@@ -15,12 +15,12 @@ class VacuumCleaner extends IPSModule
     use VariableHelper;
 
     // Min IPS Object ID
-    private const IPS_MIN_ID = 10000;
+    // private const IPS_MIN_ID = 10000;
 
     // Modul IDs
     private const GUID_MQTT_IO = '{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}';  // Splitter
     private const GUID_MQTT_TX = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';  // from module to server
-    private const GUID_MQTT_RX = '{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}';  // from server to module
+    // private const GUID_MQTT_RX = '{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}';  // from server to module
 
     // Profile "T2M.State"
     private const PROFIL_STATUS = [
@@ -89,8 +89,10 @@ class VacuumCleaner extends IPSModule
     /**
      * In contrast to Construct, this function is called only once when creating the instance and starting IP-Symcon.
      * Therefore, status variables and module properties which the module requires permanently should be created here.
+     *
+     * @return void
      */
-    public function Create()
+    public function Create(): void
     {
         //Never delete this line!
         parent::Create();
@@ -117,17 +119,36 @@ class VacuumCleaner extends IPSModule
     /**
      * This function is called when deleting the instance during operation and when updating via "Module Control".
      * The function is not called when exiting IP-Symcon.
+     *
+     * @return void
      */
-    public function Destroy()
+    public function Destroy(): void
     {
         //Never delete this line!
         parent::Destroy();
     }
 
     /**
-     * Is executed when "Apply" is pressed on the configuration page and immediately after the instance has been created.
+     * The content can be overwritten in order to transfer a self-created configuration page.
+     * This way, content can be generated dynamically.
+     * In this case, the "form.json" on the file system is completely ignored.
+     *
+     * @return string Content of the configuration page.
      */
-    public function ApplyChanges()
+    public function GetConfigurationForm(): string
+    {
+        // Get Form
+        $form = json_decode(file_get_contents(__DIR__ . '/form.json'), true);
+        //$this->LogDebug(__FUNCTION__, $form);
+        return json_encode($form);
+    }
+
+    /**
+     * Is executed when "Apply" is pressed on the configuration page and immediately after the instance has been created.
+     *
+     * @return void
+     */
+    public function ApplyChanges(): void
     {
         //Never delete this line!
         parent::ApplyChanges();
@@ -136,14 +157,14 @@ class VacuumCleaner extends IPSModule
         $topic = $this->ReadPropertyString('MQTTTopic');
 
         // Check setup
-        if (empty($base) || empty($tobic)) {
-            // Set filter
-            $filter = preg_quote($this->ReadPropertyString('MQTTBaseTopic') . '/' . $this->ReadPropertyString('MQTTTopic'));
-            $this->SendDebug(__FUNCTION__, 'Filter: .*' . $filter . '.*', 0);
-            $this->SetReceiveDataFilter('.*' . $filter . '.*');
-        } else {
+        if (empty($base) || empty($topic)) {
             $this->SetStatus(201);
             return;
+        } else {
+            // Set filter
+            $filter = preg_quote($this->ReadPropertyString('MQTTBaseTopic') . '/' . $this->ReadPropertyString('MQTTTopic'));
+            $this->LogDebug(__FUNCTION__, 'Filter: .*' . $filter . '.*');
+            $this->SetReceiveDataFilter('.*' . $filter . '.*');
         }
 
         // Initialize
@@ -187,48 +208,42 @@ class VacuumCleaner extends IPSModule
     }
 
     /**
-     * The content can be overwritten in order to transfer a self-created configuration page.
-     * This way, content can be generated dynamically.
-     * In this case, the "form.json" on the file system is completely ignored.
-     *
-     * @return JSON Content of the configuration page
-     */
-    public function GetConfigurationForm()
-    {
-        // Get Form
-        $form = json_decode(file_get_contents(__DIR__ . '/form.json'), true);
-        //$this->SendDebug(__FUNCTION__, $form);
-        return json_encode($form);
-    }
-
-    /**
      * Is called when, for example, a button is clicked in the visualization.
      *
-     *  @param string $ident Ident of the variable
-     *  @param string $value The value to be set
+     * @param string $ident Ident of the variable
+     * @param string $value The value to be set
+     *
+     * @return bool Always true.
      */
-    public function RequestAction($ident, $value)
+    public function RequestAction($ident, $value): bool
     {
         // Debug output
-        $this->SendDebug(__FUNCTION__, $ident . ' => ' . $value);
+        $this->LogDebug(__FUNCTION__, $ident . ' => ' . $value);
         switch ($ident) {
             case 'get-states':
-                $this->SendMQTT('command', strval($ident));
+                $this->SendMQTT('command', $value ? 'true' : 'false');
                 break;
-            case 'language':
             case 'power':
+                // boolean
+                $this->SendMQTT($ident . '/command', $value ? 'true' : 'false');
+                break;
+            case 'volume_set':
+                // integer
+                $this->SendMQTT($ident . '/command', strval($value));
+                break;
             case 'mode':
             case 'direction_control':
             case 'suction':
-            case 'volume_set':
             case 'clean_speed':
+            case 'language':
+                // string
                 $this->SendMQTT($ident . '/command', strval($value));
-                //$this->SetValue($ident, $value);
                 break;
             default:
-                // ERROR!!!
+                $this->LogDebug(__FUNCTION__, 'ERROR!!!');
                 break;
         }
+        //$this->SetValue($ident, $value);
         return true;
     }
 
@@ -236,14 +251,16 @@ class VacuumCleaner extends IPSModule
      * This function is called by IP-Symcon and processes sent data and, if necessary, forwards it to all child instances.
      *
      * @param string $json Data package in JSON format
+     *
+     * @return void
      */
-    public function ReceiveData($json)
+    public function ReceiveData($json): void
     {
         $data = json_decode($json);
 
         $topic = $data->Topic;
         $payload = $data->Payload;
-        $this->SendDebug(__FUNCTION__, 'Received Topic: ' . $topic . ' Payload: ' . $payload, 0);
+        $this->LogDebug(__FUNCTION__, 'Received Topic: ' . $topic . ' Payload: ' . $payload);
 
         if (fnmatch('*/status', $topic)) {
             $this->SetValueString('status', strval($payload));
@@ -295,10 +312,12 @@ class VacuumCleaner extends IPSModule
     /**
      * Send command to MQTT server.
      *
-     * @param mixed $topic Topic name
-     * @param mixed $payload Payload data
+     * @param string $topic Topic name
+     * @param string $payload Payload data
+     *
+     * @return bool True if send successful, otherwise false.
      */
-    protected function SendMQTT(string $topic, string $payload)
+    protected function SendMQTT(string $topic, string $payload): bool
     {
         $resultServer = true;
         // MQTT Server
@@ -309,19 +328,8 @@ class VacuumCleaner extends IPSModule
         $server['Topic'] = $this->ReadPropertyString('MQTTBaseTopic') . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $topic;
         $server['Payload'] = $payload;
         $json = json_encode($server, JSON_UNESCAPED_SLASHES);
-        $this->SendDebug(__FUNCTION__ . 'MQTT Server', $json, 0);
+        $this->LogDebug(__FUNCTION__ . 'MQTT Server', $json);
         $resultServer = @$this->SendDataToParent($json);
         return $resultServer === false;
-    }
-
-    /**
-     * Show message via popup.
-     *
-     * @param string $caption Echo message text
-     */
-    private function EchoMessage(string $caption)
-    {
-        $this->UpdateFormField('EchoMessage', 'caption', $this->Translate($caption));
-        $this->UpdateFormField('EchoPopup', 'visible', true);
     }
 }

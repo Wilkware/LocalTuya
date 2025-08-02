@@ -1,12 +1,12 @@
 {
     "id": "{1F417032-A8B4-2071-7B5E-36473ADAD157}",
-    "name": "LocalTuya2MQTT",
+    "name": "LocalTuya",
     "author": "Wilkware (@Pitti)",
     "url": "https://wilkware.de",
     "compatibility": {
-        "version": "7.0"
+        "version": "7.2"
     },
     "version": "1.0",
-    "build": 20250125,
-    "date": 1737806400
+    "build": 20250802,
+    "date": 1754136000
 }

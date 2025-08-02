@@ -24,8 +24,9 @@ trait VariableHelper
      *
      * @param string $ident Ident of the boolean variable
      * @param bool   $value Value of the boolean variable
+     * @return void
      */
-    protected function SetValueBoolean(string $ident, bool $value)
+    protected function SetValueBoolean(string $ident, bool $value): void
     {
         $id = @$this->GetIDForIdent($ident);
         if ($id !== false) {
@@ -38,8 +39,9 @@ trait VariableHelper
      *
      * @param string $ident Ident of the string variable
      * @param string $value Value of the string variable
+     * @return void
      */
-    protected function SetValueString(string $ident, string $value)
+    protected function SetValueString(string $ident, string $value): void
     {
         $id = @$this->GetIDForIdent($ident);
         if ($id !== false) {
@@ -52,8 +54,9 @@ trait VariableHelper
      *
      * @param string $ident Ident of the integer variable
      * @param int    $value Value of the integer variable
+     * @return void
      */
-    protected function SetValueInteger(string $ident, int $value)
+    protected function SetValueInteger(string $ident, int $value): void
     {
         $id = @$this->GetIDForIdent($ident);
         if ($id !== false) {
@@ -66,8 +69,9 @@ trait VariableHelper
      *
      * @param string $ident Ident of the float variable
      * @param float  $value Value of the float variable
+     * @return void
      */
-    protected function SetValueFloat(string $ident, float $value)
+    protected function SetValueFloat(string $ident, float $value): void
     {
         $id = @$this->GetIDForIdent($ident);
         if ($id !== false) {
@@ -78,10 +82,11 @@ trait VariableHelper
     /**
      * Sets the variable inactive.
      *
-     * @param string $ident Ident of the integer variable
-     * @param bool   $value Enable or disable value the variable
+     * @param string $ident Ident of the integer variable.
+     * @param bool   $value Enable or disable value the variable.
+     * @return void
      */
-    protected function SetVariableDisabled(string $ident, bool $value)
+    protected function SetVariableDisabled(string $ident, bool $value): void
     {
         $id = @$this->GetIDForIdent($ident);
         if ($id !== false) {
@@ -93,10 +98,10 @@ trait VariableHelper
      * Check if the identifier is a valid variable identifier
      *
      * @param string $ident Variable identifier
-     * @param bool $exist may exist variable
+     * @param bool   $exist may exist variable
      * @return string (correct) variable identifier
      */
-    protected function GetVariableIdent(string $ident, bool $exist = false)
+    protected function GetVariableIdent(string $ident, bool $exist = false): string
     {
         // Replace not allowed chars
         $fixchar = ['/ä/', '/ö/', '/ü/', '/Ä/', '/Ö/', '/Ü/', '/ß/'];

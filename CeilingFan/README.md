@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Actions](https://img.shields.io/github/actions/workflow/status/wilkware/LocalTuya2MQTT/style.yml?branch=main&label=CheckStyle&style=flat-square)](https://github.com/Wilkware/LocalTuya2MQTT/actions)
 
-Das Modul bietet die Möglichkeit, mit einem kombatiblen Saugroboter über das lokale Netzwerk zu kommunizieren.
+Das Modul bietet die Möglichkeit, mit einem kombatiblen Deckenventilator über das lokale Netzwerk zu kommunizieren.
 
 ## Inhaltverzeichnis
 
@@ -21,9 +21,8 @@ Das Modul bietet die Möglichkeit, mit einem kombatiblen Saugroboter über das l
 
 ### 1. Funktionsumfang
 
-Das Modules kommuniziert via MQTT mit dem Saugroboter und bietet neben dem Auslesen aller Geräteinformationen auch das
-Steuern des Roboters über die Statusvariablen.  
-Eine genaue Beschreibung der für den Saugroporter verfügbaren Befehlsumfang kann man im [Tuya Developer Portal](https://developer.tuya.com/en/) einsehen.
+Das Modules kommuniziert via MQTT mit dem Deckenventilator und bietet neben dem Auslesen aller Geräteinformationen auch das Steuern des Ventilators über die Statusvariablen.  
+Eine genaue Beschreibung der für den Deckenventilator verfügbaren Befehlsumfang kann man im [Tuya Developer Portal](https://developer.tuya.com/en/) einsehen.
 
 ### 2. Voraussetzungen
 
@@ -32,7 +31,7 @@ Eine genaue Beschreibung der für den Saugroporter verfügbaren Befehlsumfang ka
 Notwendige Voraussetzung ist eine funktionsfähige und laufende Installation von [Tuya2Mqtt](https://github.com/Wilkware/tuya2mqtt). Dessen Installation, Konfiguration und der Betrieb ist hier beschrieben: [README](https://github.com/Wilkware/tuya2mqtt/blob/main/README.md).  
 Dort findet man ebenfalls die unterstützten Tuya Geräte.
 
-Getestet mit meinem Saugroboter P20 von AIRROBO.
+Getestet mit meinem Deckenventilator WINDCALM von CREATE.
 
 ### 3. Installation
 
@@ -42,7 +41,7 @@ Getestet mit meinem Saugroboter P20 von AIRROBO.
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
-* Unter "Instanz hinzufügen" ist das _'Tuya Vacuum Cleaner'_-Modul (Alias: _'Tuya Saugroboter'_) unter dem Hersteller _'(Geräte)'_ aufgeführt.
+* Unter "Instanz hinzufügen" ist das _'Tuya Ceiling Fan'_-Modul (Alias: _'Tuya Deckenventilator'_) unter dem Hersteller _'(Geräte)'_ aufgeführt.
 
 __Konfigurationsseite__:
 
