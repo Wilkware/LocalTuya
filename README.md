@@ -8,13 +8,13 @@ IP-Symcon Modulbibliothek für Tuya-Geräten, welche eine lokale Steuerung (ohne
 
 Folgende Module beinhaltet diese Bibliothek:
 
-- __Vacuum Cleaner (Saugroboter)__ ([Dokumentation](VacuumCleaner))
-- __Ceiling Fan (Deckenventilator)__ ([Dokumentation](CeilingFan))
+- __Deckenventilator (Ceiling Fan)__ ([Dokumentation](CeilingFan))
+- __Saugroboter (Vacuum Cleaner)__ ([Dokumentation](VacuumCleaner))
 
 ## 📜 Historie
 
-- 2025-08-02: Modul *Ceiling Fan (Deckenventilator)*
-- 2025-01-25: Modul *Vacuum Cleaner (Saugroboter)*
+- 2025-08-02: Modul *Deckenventilator (Ceiling Fan)*
+- 2025-01-25: Modul *Saugroboter (Vacuum Cleaner)*
 
 ## 🪧 Voraussetzung
 

@@ -1,4 +1,4 @@
-# 🗂️ Vacuum Cleaner (Saugroboter)
+# 🗂️ Saugroboter (Vacuum Cleaner)
 
 [![Version](https://img.shields.io/badge/Symcon-PHP--Modul-red.svg?style=flat-square)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
 [![Product](https://img.shields.io/badge/Symcon%20Version-7.2-blue.svg?style=flat-square)](https://www.symcon.de/produkt/)
@@ -36,13 +36,13 @@ Getestet mit meinem Saugroboter P20 von AIRROBO.
 
 ### 3. Installation
 
-* Über den Modul Store das Modul _Tuya Saugroboter_ installieren.
+* Über den Modul Store die Bibliothek _LocalTuya_ installieren.
 * Alternativ Über das Modul-Control folgende URL hinzufügen.  
 `https://github.com/Wilkware/LocalTuya` oder `git://github.com/Wilkware/LocalTuya.git`
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
-* Unter "Instanz hinzufügen" ist das _'Tuya Vacuum Cleaner'_-Modul (Alias: _'Tuya Saugroboter'_) unter dem Hersteller _'(Geräte)'_ aufgeführt.
+* Unter "Instanz hinzufügen" ist das _'Tuya Saugroboter'_-Modul unter dem Hersteller _'(Geräte)'_ aufgeführt.
 
 __Konfigurationsseite__:
 

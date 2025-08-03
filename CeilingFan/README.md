@@ -1,4 +1,4 @@
-# 🗂️ Vacuum Cleaner (Saugroboter)
+# 🗂️ Deckenventilator (Ceiling Fan)
 
 [![Version](https://img.shields.io/badge/Symcon-PHP--Modul-red.svg?style=flat-square)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
 [![Product](https://img.shields.io/badge/Symcon%20Version-7.2-blue.svg?style=flat-square)](https://www.symcon.de/produkt/)
@@ -35,13 +35,13 @@ Getestet mit meinem Deckenventilator WINDCALM von CREATE.
 
 ### 3. Installation
 
-* Über den Modul Store das Modul _Tuya Saugroboter_ installieren.
+* Über den Modul Store die Bibliothek _LocalTuya_ installieren.
 * Alternativ Über das Modul-Control folgende URL hinzufügen.  
 `https://github.com/Wilkware/LocalTuya` oder `git://github.com/Wilkware/LocalTuya.git`
 
 ### 4. Einrichten der Instanzen in IP-Symcon
 
-* Unter "Instanz hinzufügen" ist das _'Tuya Ceiling Fan'_-Modul (Alias: _'Tuya Deckenventilator'_) unter dem Hersteller _'(Geräte)'_ aufgeführt.
+* Unter "Instanz hinzufügen" ist das _'Tuya Deckenventilator'_-Modul unter dem Hersteller _'(Geräte)'_ aufgeführt.
 
 __Konfigurationsseite__:
 
@@ -68,34 +68,23 @@ Die Statusvariablen werden automatisch angelegt. Das Löschen einzelner kann hil
 Name                        | Typ       | Beschreibung
 --------------------------- | --------- | ----------------
 Status                      | String    | Verfügbarkeitsstaus (siehe T2M.Status)
-Betrieb                     | Boolean   | Betriebszustand (AN, AUS)
-Modus                       | String    | Aktueller Gerätemodus (siehe T2MVC.Mode)
-Zustand                     | String    | Aktueller Betriebsstatus (siehe T2MVC.Working)
-Richtungssteuerung          | String    | Steuerung der Richtungsbewegung (siehe T2MVC.Direction)
-Batterieladung              | Integer   | Aktueller Ladezustand (0-100%)
-Kantenbürste                | Integer   | Lebensdauer der Seitenbürste (0-100%)
-Walzenürste                 | Integer   | Lebensdauer der Hauptbürste (0-100%)
-Filer                       | Integer   | Lebensdauer des Filters (0-100%)
-Saugstufe                   | String    | Stärke der Saugstufe (siehe T2MVC.Suction)
-Reinigungsbereich           | Integer   | Quadratmeter der gereinigten Fläche (0-9999m³)
-Reinigungszeit              | Integer   | Verbrauchte Zeit für Reinigung (0-9999min)
-Reinigiungsgeschwindigkeit  | String    | Schnelles oder sorgfälltiges Reinigen (siehe T2MVC.Speed)
-Lautsärke                   | Integer   | Lautsärker der Sprachausgabe des Gerätes (0-100%)
-Sprache                     | String    | Verwendete Sprache für Amsagen (siehe T2M.Language)
+Licht                       | Boolean   | Licht schalten (AN, AUS)
+Farbtemperatur              | Integer   | Warm (0), Neutral(500) oder Kühl (1000)
+Ventilator                  | Boolean   | Ventilator schalten (AN, AUS)
+Geschwindigkeit             | Integer   | Stufen von 1 bis 6
+Richtung                    | String    | 'Vorwärts' oder 'Rückwärts'
+Verbleibende Zeit           | Integer   | Restlaufzeit bei eingestellten Timer (in Minuten und Sekunden)
+Piepton                     | Boolean   | Bei jeder Schaltaktion einen Ton ausgeben (AN, AUS)
 
 Folgendes Profil wird angelegt:
 
 Name                 | Typ       | Beschreibung
 -------------------- | --------- | ----------------
 T2M.Status           | String    | Online (online), Offline (offline) oder Undefinierd (undefined)
-T2M.Language         | String    | Englisch, Deutsch, Französisch, Russisch, Spanisch, Italienisch
-T2MVC.Mode           | String    | Bereit, Intilligent, Kanten, Spiral, Zickzack, Laden
-T2MVC.Direction      | String    | Vorwärts, Links drehen, Rechts drehen, Stop, Exit
-T2MVC.Working        | String    | Intilligente Reingung, Kantenreinigung, Punktuelle Reinigung, Wischen und Reinigen, Zum aufladen, Aufladen, Voll aufgeladen, Pausiert, Reinigen, Schlafen
-T2MVC.Suction        | String    | Stark, Normal, Leise
-T2MVC.Speed          | String    | Gründliches reinigen, Schnell reinigen
-T2MVC.Area           | Integer   | 0 bis 9999 Quadratmeter (m³)
-T2MVC.Time           | Integer   | 0 bis 9999 Minuten (min)
+T2MCF.ColorTemp      | Integer   | Farbtemperatur ind 3 Assoziationen: Warm (0), Neutral(500) und Kühl (1000)
+T2MCF.Direction      | String    | 'Vorwärts' oder 'Rückwärts'
+T2MCF.Speed          | Integer   | Stufe 1 .. Stufe 6
+T2MCF.Countdown      | Integer   | 0 bis 540 Sekunden (0:00 min)
 
 ### 6. Visualisierung
 
