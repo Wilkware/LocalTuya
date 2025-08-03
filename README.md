@@ -1,7 +1,7 @@
-# LocalTuya
+# 🗃️ LocalTuya
 
 [![Version](https://img.shields.io/badge/Symcon-PHP--Bibliothek-purple.svg?style=flat-square)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
-[![Product](https://img.shields.io/badge/Symcon%20Version-7.0-blue.svg?style=flat-square)](https://www.symcon.de/produkt/)
+[![Product](https://img.shields.io/badge/Symcon%20Version-7.2-blue.svg?style=flat-square)](https://www.symcon.de/produkt/)
 [![Licence](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 IP-Symcon Modulbibliothek für Tuya-Geräten, welche eine lokale Steuerung (ohne Cloud) unterstützen.
