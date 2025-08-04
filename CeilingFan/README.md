@@ -47,7 +47,7 @@ __Konfigurationsseite__:
 
 Einstellungsbereich:
 
-> Geräteinformationen …
+> 📳 Geräteinformationen …
 
 Name                        | Beschreibung
 --------------------------- | ----------------------------------
