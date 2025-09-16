@@ -8,7 +8,7 @@ require_once __DIR__ . '/../libs/_traits.php';
 /**
  * CLASS VacuumCleaner
  */
-class VacuumCleaner extends IPSModule
+class VacuumCleaner extends IPSModuleStrict
 {
     use DebugHelper;
     use ProfileHelper;
@@ -211,11 +211,10 @@ class VacuumCleaner extends IPSModule
      * Is called when, for example, a button is clicked in the visualization.
      *
      * @param string $ident Ident of the variable
-     * @param string $value The value to be set
-     *
-     * @return bool Always true.
+     * @param mixed $value The value to be set
+     * @return void
      */
-    public function RequestAction($ident, $value): bool
+    public function RequestAction(string $ident, mixed $value): void
     {
         // Debug output
         $this->LogDebug(__FUNCTION__, $ident . ' => ' . $value);
@@ -244,17 +243,17 @@ class VacuumCleaner extends IPSModule
                 break;
         }
         //$this->SetValue($ident, $value);
-        return true;
     }
 
     /**
-     * This function is called by IP-Symcon and processes sent data and, if necessary, forwards it to all child instances.
+     * This function is called by IP-Symcon and processes sent data and, if necessary, forwards it to
+     * all child instances. Data can be sent using the SendDataToChildren function.
      *
      * @param string $json Data package in JSON format
      *
-     * @return void
+     * @return string Optional response to the parent instance
      */
-    public function ReceiveData($json): void
+    public function ReceiveData(string $json): string
     {
         $data = json_decode($json);
 
@@ -307,6 +306,7 @@ class VacuumCleaner extends IPSModule
         if (fnmatch('*/language', $topic)) {
             $this->SetValueString('language', strval($payload));
         }
+        return '';
     }
 
     /**
@@ -330,6 +330,6 @@ class VacuumCleaner extends IPSModule
         $json = json_encode($server, JSON_UNESCAPED_SLASHES);
         $this->LogDebug(__FUNCTION__ . 'MQTT Server', $json);
         $resultServer = @$this->SendDataToParent($json);
-        return $resultServer === false;
+        return $resultServer !== '';
     }
 }
