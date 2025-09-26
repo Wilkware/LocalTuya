@@ -165,7 +165,7 @@ class CeilingFan extends IPSModuleStrict
         $this->LogDebug(__FUNCTION__, $ident . ' => ' . $value);
         switch ($ident) {
             case 'get-states':
-                $this->SendMQTT('command', $value ? 'true' : 'false');
+                $this->SendMQTT('command', $ident);
                 break;
             case 'light':
             case 'fan':
@@ -203,7 +203,7 @@ class CeilingFan extends IPSModuleStrict
         $data = json_decode($json);
 
         $topic = $data->Topic;
-        $payload = $data->Payload;
+        $payload = hex2bin($data->Payload);
         $this->LogDebug(__FUNCTION__, 'Received Topic: ' . $topic . ' Payload: ' . $payload);
 
         if (fnmatch('*/status', $topic)) {
@@ -250,7 +250,7 @@ class CeilingFan extends IPSModuleStrict
         $server['QualityOfService'] = 0;
         $server['Retain'] = false;
         $server['Topic'] = $this->ReadPropertyString('MQTTBaseTopic') . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $topic;
-        $server['Payload'] = $payload;
+        $server['Payload'] = bin2hex($payload);
         $json = json_encode($server, JSON_UNESCAPED_SLASHES);
         $this->LogDebug(__FUNCTION__, $json);
         $resultServer = @$this->SendDataToParent($json);

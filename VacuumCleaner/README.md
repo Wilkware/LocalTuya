@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/badge/Symcon-PHP--Modul-red.svg?style=flat-square)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
 [![Product](https://img.shields.io/badge/Symcon%20Version-8.1-blue.svg?style=flat-square)](https://www.symcon.de/produkt/)
-[![Version](https://img.shields.io/badge/Modul%20Version-2.0.20250916-orange.svg?style=flat-square)](https://github.com/Wilkware/LocalTuya)
+[![Version](https://img.shields.io/badge/Modul%20Version-2.1.20250926-orange.svg?style=flat-square)](https://github.com/Wilkware/LocalTuya)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Actions](https://img.shields.io/github/actions/workflow/status/wilkware/LocalTuya/ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/Wilkware/LocalTuya/actions)
 
@@ -107,6 +107,11 @@ Man kann die Instanz bzw. Statusvariablen direkt in die Visualisierung verlinken
 Das Modul stellt keine direkten Funktionsaufrufe zur Verfügung.
 
 ### 8. Versionshistorie
+
+v2.1.20250926
+
+* _FIX_: Abruf aller Daten korriegiert (get-states)
+* _FIX_: Fehler bei Verarbeitung des Payloads durch Umstellung auf IPSModuleStrict korriegiert
 
 v2.0.20250916
 

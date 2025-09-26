@@ -1,1 +1,0 @@
-{"version":1,"defects":[],"times":{"ValidationTest::testNop":0.001,"ValidationTest::testValidateLibrary":0.04,"ValidationTest::testValidateModule":0.003,"ValidationTest::testValidateCeilingFan":0.246,"ValidationTest::testValidateVacuumCleaner":0.21,"ValidationTest::testValidateModule#CeilingFan":0.731,"ValidationTest::testValidateModule#VacuumCleaner":0.382}}
