@@ -98,8 +98,8 @@ Das Modul stellt keine direkten Funktionsaufrufe zur Verfügung.
 
 v2.1.20250926
 
-* _FIX_: Abruf aller Daten korriegiert (get-states)
-* _FIX_: Fehler bei Verarbeitung des Payloads durch Umstellung auf IPSModuleStrict korriegiert
+* _FIX_: Abruf aller Daten korrigiert (get-states)
+* _FIX_: Fehler bei Verarbeitung des Payloads durch Umstellung auf IPSModuleStrict korrigiert
 
 v2.0.20250916
 
@@ -113,7 +113,7 @@ v1.1.20250802
 * _NEU_: Konfigurationsformular überarbeitet
 * _NEU_: Continuous Integration mit Check Style, Static Code Analysis und Unit Tests eingeführt
 * _NEU_: Debugging Funktionen komplett überarbeitet
-* _FIX_: Mqtt Topic test korriegiert
+* _FIX_: Mqtt Topic test korrigiert
 * _FIX_: Dokumentation für PHP Static Analysis komplett überarbeitet
 * _FIX_: Bibliotheksfunktionen überarbeitet in Vorbereitung auf IPSModuleStrict
 
