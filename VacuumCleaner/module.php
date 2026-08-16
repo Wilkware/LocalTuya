@@ -2,89 +2,288 @@
 
 declare(strict_types=1);
 
-// Allgemeine Funktionen
+/** Generell funktions */
 require_once __DIR__ . '/../libs/_traits.php';
+
+/** Namespaced traits */
+use Wilkware\LocalTuya\DebugHelper;
+use Wilkware\LocalTuya\VariableHelper;
 
 /**
  * CLASS VacuumCleaner
  */
 class VacuumCleaner extends IPSModuleStrict
 {
+    // -------------------------------------------------------------------------
+    // Traits
+    // -------------------------------------------------------------------------
+
     use DebugHelper;
-    use ProfileHelper;
     use VariableHelper;
 
-    // Min IPS Object ID
-    // private const IPS_MIN_ID = 10000;
+    // -------------------------------------------------------------------------
+    // Constants
+    // -------------------------------------------------------------------------
 
-    // Modul IDs
-    private const GUID_MQTT_IO = '{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}';  // Splitter
-    private const GUID_MQTT_TX = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';  // from module to server
-    // private const GUID_MQTT_RX = '{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}';  // from server to module
+    /** @var string Splitter Modul IDs */
+    private const GUID_MQTT_IO = '{C6D2AEB3-6E1F-4B2E-8E69-3A1A00246850}';
 
-    // Profile "T2M.State"
-    private const PROFIL_STATUS = [
-        ['offline', 'Offline', 'signal-slash', 0xFF0000],
-        ['online', 'Online', 'signal', 0x00FF00],
-        ['undefine', 'Undefine', 'signal-slash', 0x0000FF],
+    /** @var string MQTT TX Module ID (from module to server)*/
+    private const GUID_MQTT_TX = '{043EA491-0325-4ADD-8FC2-A30C8EEB4D3F}';
+
+    /** @var string MQTT RX Module ID (from server to module) */
+    //private const GUID_MQTT_RX = '{7F7632D9-FA40-4F38-8DEA-C83CD4325A32}';
+
+    // -------------------------------------------------------------------------
+    // Presentations
+    // -------------------------------------------------------------------------
+
+    /**
+     * @var array<string,mixed> Presentation (Switch)
+     */
+    private const T2MVC_PRESENTATION_SWITCH = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_SWITCH,
+        'USE_ICON_FALSE' => false,
+        'USAGE_TYPE' => 0,
+        'ICON_TRUE' => 'power-off',
+        'ICON_FALSE' => 'power-off',
+        'GLOW_INTENSITY' => 50,
+        'GLOW_COLOR' => 16771899,
     ];
 
-    // Profile "T2MVC.Mode" (vacuum-robot)
-    private const PROFIL_MODE = [
-        ['standby', 'Standby', '', -1],
-        ['smart', 'Smart', '', -1],
-        ['wall_follow', 'Edges', '', -1],
-        ['spiral', 'Spiral', '', -1],
-        ['partial_bow', 'Zigzag', '', -1],
-        ['chargego', 'Charge', '', -1],
+    /**
+     * @var array<string,mixed> ModePresentation (Enumeration)
+     */
+    private const T2MVC_PRESENTATION_MODE = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
+        'OPTIONS' => '[{"Value":"standby","Caption":"Standby","IconActive":false,"IconValue":"","Color":-1},{"Value":"smart","Caption":"Smart","IconActive":false,"IconValue":"","Color":-1},{"Value":"wall_follow","Caption":"Edges","IconActive":false,"IconValue":"","Color":-1},{"Value":"spiral","Caption":"Spiral","IconActive":false,"IconValue":"","Color":-1},{"Value":"partial_bow","Caption":"Zigzag","IconActive":false,"IconValue":"","Color":-1},{"Value":"chargego","Caption":"Charge","IconActive":false,"IconValue":"","Color":-1}]',
+        'LAYOUT' => 0,
+        'ICON' => 'vacuum-robot',
+        'DISPLAY' => 0,
     ];
 
-    // Profile "T2MVC.Direction"
-    private const PROFIL_DIRECTION = [
-        ['forward', 'Forward', 'right', -1],
-        ['turn_left', 'Turn left', 'turn-left', -1],
-        ['turn_right', 'Turn right', 'turn-right', -1],
-        ['stop', 'Stop', 'stop', -1],
-        ['exit', 'Exit', 'circle-xmark', -1],
+    /**
+     * @var array<string,mixed> Direction Presentation (Enumeration)
+     */
+    private const T2MVC_PRESENTATION_DIRECTION = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
+        'OPTIONS' => '[{"Value":"forward","Caption":"Forward","IconActive":true,"IconValue":"right","Color":-1},{"Value":"turn_left","Caption":"Turn left","IconActive":true,"IconValue":"turn-left","Color":-1},{"Value":"turn_right","Caption":"Turn right","IconActive":true,"IconValue":"turn-right","Color":-1},{"Value":"stop","Caption":"Stop","IconActive":true,"IconValue":"stop","Color":-1},{"Value":"exit","Caption":"Exit","IconActive":true,"IconValue":"circle-xmark","Color":-1}]',
+        'LAYOUT' => 0,
+        'ICON' => 'compass',
+        'DISPLAY' => 0,
     ];
 
-    // Profile "T2MVC.Working" (vacuum-robot)
-    private const PROFIL_WORKING = [
-        ['standby', 'Standby', '', -1],
-        ['smart_clean', 'Smart cleaning', '', -1],
-        ['wall_clean', 'Edge cleaning', '', -1], // Kantenreinigungsmodus.
-        ['spot_clean', 'Spot cleaning', '', -1], // Punktuelle Reinigung
-        ['mop_clean', 'Mopping and cleaning', '', -1], //Wischen und Reinigen
-        ['goto_charge', 'Go charging', '', -1],
-        ['charging', 'Charging', '', -1],
-        ['charge_done', 'Charged', '', -1],
-        ['paused', 'Paused', '', -1],
-        ['cleaning', 'Cleaning', '', -1],
-        ['sleep', 'Sleep', '', -1],
+    /**
+     * @var array<string,mixed> Working Presentation (Value)
+     */
+    private const T2MVC_PRESENTATION_WORKING = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'USAGE_TYPE' => 0,
+        'THOUSANDS_SEPARATOR' => '',
+        'SHOW_PREVIEW' => true,
+        'SUFFIX' => '',
+        'COLOR' => -1,
+        'PREFIX' => '',
+        'CONTENT_COLOR' => -1,
+        'MAX' => 0,
+        'MULTILINE' => false,
+        'DECIMAL_SEPARATOR' => 'Client',
+        'PERCENTAGE' => false,
+        'DIGITS' => 0,
+        'INTERVALS' => '[]',
+        'DISPLAY_TYPE' => 0,
+        'ICON' => 'vacuum-robot',
+        'INTERVALS_ACTIVE' => true,
+        'PREVIEW_STYLE' => 1,
+        'MIN' => 0,
+        'OPTIONS' => '[{"Value":"standby","Caption":"Standby","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"smart_clean","Caption":"Smart cleaning","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"wall_clean","Caption":"Edge cleaning","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"spot_clean","Caption":"Spot cleaning","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"mop_clean","Caption":"Mopping and cleaning","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"goto_charge","Caption":"Go charging","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"charging","Caption":"Charging","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"charge_done","Caption":"Charged","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"paused","Caption":"Paused","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"cleaning","Caption":"Cleaning","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"sleep","Caption":"Sleep","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1}]',
     ];
 
-    // Profile "T2MVC.Suction" (vacuum)
-    private const PROFIL_SUCTION = [
-        ['strong', 'Strong', '', -1],
-        ['normal', 'Normal', '', -1],
-        ['gentle', 'Gentle', '', -1],
+    /**
+     * @var array<string,mixed> Battery Presentation (Value)
+     */
+    private const T2MVC_PRESENTATION_BATTERY = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'USAGE_TYPE' => 0,
+        'THOUSANDS_SEPARATOR' => '',
+        'SHOW_PREVIEW' => true,
+        'SUFFIX' => ' %',
+        'COLOR' => -1,
+        'MAX' => 100,
+        'MULTILINE' => false,
+        'DECIMAL_SEPARATOR' => 'Client',
+        'PERCENTAGE' => true,
+        'DIGITS' => 0,
+        'INTERVALS' => '[]',
+        'DISPLAY_TYPE' => 0,
+        'ICON' => 'Battery',
+        'INTERVALS_ACTIVE' => false,
+        'PREVIEW_STYLE' => 1,
+        'MIN' => 0,
+        'CONTENT_COLOR' => -1,
+        'PREFIX' => '',
     ];
 
-    // Profile "T2M.Language" (language)
-    private const PROFIL_LANG = [
-        ['english', 'English', '', -1],
-        ['german', 'German', '', -1],
-        ['french', 'French', '', -1],
-        ['russian', 'Russian', '', -1],
-        ['spanish', 'Spanish', '', -1],
-        ['italian', 'Italian', '', -1],
+    /**
+     * @var array<string,mixed> Valve Presentation (Value)
+     */
+    private const T2MVC_PRESENTATION_VALVE = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'USAGE_TYPE' => 0,
+        'THOUSANDS_SEPARATOR' => '',
+        'SHOW_PREVIEW' => true,
+        'SUFFIX' => ' %',
+        'COLOR' => -1,
+        'MAX' => 100,
+        'MULTILINE' => false,
+        'DECIMAL_SEPARATOR' => 'Client',
+        'PERCENTAGE' => true,
+        'DIGITS' => 0,
+        'INTERVALS' => '[]',
+        'DISPLAY_TYPE' => 0,
+        'ICON' => 'Gauge',
+        'INTERVALS_ACTIVE' => false,
+        'PREVIEW_STYLE' => 1,
+        'MIN' => 0,
+        'CONTENT_COLOR' => -1,
+        'PREFIX' => '',
     ];
 
-    // Profile "T2MVC.Speed" (vacuum-robot)
-    private const PROFIL_SPEED = [
-        ['careful_clean', 'Careful clean', '', -1],
-        ['speed_clean', 'Speed clean', '', -1],
+    /**
+     * @var array<string,mixed> Clean Area Presentation (Value)
+     */
+    private const T2MVC_PRESENTATION_CLEAN_AREA = [
+        'USAGE_TYPE' => 0,
+        'THOUSANDS_SEPARATOR' => '',
+        'SHOW_PREVIEW' => true,
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'SUFFIX' => ' m³',
+        'COLOR' => -1,
+        'MAX' => 9999,
+        'MULTILINE' => false,
+        'DECIMAL_SEPARATOR' => 'Client',
+        'PERCENTAGE' => false,
+        'DIGITS' => 0,
+        'INTERVALS' => '[]',
+        'DISPLAY_TYPE' => 0,
+        'ICON' => 'map',
+        'INTERVALS_ACTIVE' => false,
+        'PREVIEW_STYLE' => 1,
+        'MIN' => 0,
+        'CONTENT_COLOR' => -1,
+        'PREFIX' => '',
     ];
+
+    /**
+     * @var array<string,mixed> Clean Time Presentation (Value)
+     */
+    private const T2MVC_PRESENTATION_CLEAN_TIME = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'USAGE_TYPE' => 0,
+        'THOUSANDS_SEPARATOR' => '',
+        'SHOW_PREVIEW' => true,
+        'SUFFIX' => ' min',
+        'COLOR' => -1,
+        'MAX' => 9999,
+        'MULTILINE' => false,
+        'DECIMAL_SEPARATOR' => 'Client',
+        'PERCENTAGE' => false,
+        'DIGITS' => 0,
+        'INTERVALS' => '[]',
+        'DISPLAY_TYPE' => 0,
+        'ICON' => 'timer',
+        'INTERVALS_ACTIVE' => false,
+        'PREVIEW_STYLE' => 1,
+        'MIN' => 0,
+        'CONTENT_COLOR' => -1,
+        'PREFIX' => '',
+    ];
+
+    /**
+     * @var array<string,mixed> Suction Presentation (Enumeration)
+     */
+    private const T2MVC_PRESENTATION_SUCTION = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
+        'OPTIONS' => '[{"Value":"strong","Caption":"Strong","IconActive":false,"IconValue":"","Color":-1},{"Value":"normal","Caption":"Normal","IconActive":false,"IconValue":"","Color":-1},{"Value":"gentle","Caption":"Gentle","IconActive":false,"IconValue":"","Color":-1}]',
+        'LAYOUT' => 0,
+        'ICON' => 'vacuum',
+        'DISPLAY' => 0,
+    ];
+
+    /**
+     * @var array<string,mixed> Volume Presentation (Slider)
+     */
+    private const T2MVC_PRESENTATION_VOLUME = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_SLIDER,
+        'USAGE_TYPE' => 3,
+        'THOUSANDS_SEPARATOR' => '',
+        'DECIMAL_SEPARATOR' => 'Client',
+        'PERCENTAGE' => true,
+        'DIGITS' => 0,
+        'INTERVALS' => '[]',
+        'ICON' => 'Speaker',
+        'INTERVALS_ACTIVE' => false,
+        'MAX' => 100,
+        'GRADIENT_TYPE' => 0,
+        'MIN' => 0,
+        'CUSTOM_GRADIENT' => '[]',
+        'PREFIX' => '',
+        'STEP_SIZE' => 1.0,
+        'SUFFIX' => ' %',
+    ];
+
+    /**
+     * @var array<string,mixed> Language Presentation (Enumeration)
+     */
+    private const T2MVC_PRESENTATION_LANG = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
+        'OPTIONS' => '[{"Value":"english","Caption":"English","IconActive":false,"IconValue":"","Color":-1},{"Value":"german","Caption":"German","IconActive":false,"IconValue":"","Color":-1},{"Value":"french","Caption":"French","IconActive":false,"IconValue":"","Color":-1},{"Value":"russian","Caption":"Russian","IconActive":false,"IconValue":"","Color":-1},{"Value":"spanish","Caption":"Spanish","IconActive":false,"IconValue":"","Color":-1},{"Value":"italian","Caption":"Italian","IconActive":false,"IconValue":"","Color":-1}]',
+        'LAYOUT' => 0,
+        'ICON' => 'language',
+        'DISPLAY' => 0,
+    ];
+
+    /**
+     * @var array<string,mixed> Clean speed Presentation (Enumeration)
+     */
+    private const T2MVC_PRESENTATION_CLEAN_SPEED = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
+        'OPTIONS' => '[{"Value":"careful_clean","Caption":"Careful clean","IconValue":"turtle","IconActive":true,"Color":-1},{"Value":"speed_clean","Caption":"Speed clean","IconValue":"rabbit-running","IconActive":true,"Color":-1}]',
+        'LAYOUT' => 0,
+        'ICON' => '',
+        'DISPLAY' => 0,
+    ];
+
+    /**
+     * @var array<string,mixed> State Presentation (Value)
+     */
+    private const T2MVC_PRESENTATION_STATE = [
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'USAGE_TYPE' => 0,
+        'THOUSANDS_SEPARATOR' => '',
+        'SHOW_PREVIEW' => true,
+        'SUFFIX' => '',
+        'COLOR' => -1,
+        'PREFIX' => '',
+        'CONTENT_COLOR' => -1,
+        'MAX' => 0,
+        'MULTILINE' => false,
+        'DECIMAL_SEPARATOR' => 'Client',
+        'PERCENTAGE' => false,
+        'DIGITS' => 0,
+        'INTERVALS' => '[]',
+        'DISPLAY_TYPE' => 0,
+        'ICON' => '',
+        'INTERVALS_ACTIVE' => true,
+        'PREVIEW_STYLE' => 1,
+        'MIN' => 0,
+        'OPTIONS' => '[{"Value":"offline","Caption":"Offline","IconActive":true,"IconValue":"signal-slash","ColorActive":true,"ColorValue":16711680},{"Value":"online","Caption":"Online","IconActive":true,"IconValue":"signal","ColorActive":true,"ColorValue":65280},{"Value":"undefine","Caption":"Undefine","IconActive":true,"IconValue":"signal-slash","ColorActive":true,"ColorValue":255}]',
+    ];
+
+
+    // -------------------------------------------------------------------------
+    // Methods
+    // -------------------------------------------------------------------------
 
     /**
      * In contrast to Construct, this function is called only once when creating the instance and starting IP-Symcon.
@@ -100,17 +299,6 @@ class VacuumCleaner extends IPSModuleStrict
         // Device-Topic (Name)
         $this->RegisterPropertyString('MQTTBaseTopic', 'tuya2mqtt');
         $this->RegisterPropertyString('MQTTTopic', '');
-
-        // Profiles
-        $this->RegisterProfileString('T2M.Status', '', '', '', self::PROFIL_STATUS);
-        $this->RegisterProfileString('T2M.Language', 'language', '', '', self::PROFIL_LANG);
-        $this->RegisterProfileString('T2MVC.Mode', 'vacuum-robot', '', '', self::PROFIL_MODE);
-        $this->RegisterProfileString('T2MVC.Direction', 'compass', '', '', self::PROFIL_DIRECTION);
-        $this->RegisterProfileString('T2MVC.Working', 'vacuum-robot', '', '', self::PROFIL_WORKING);
-        $this->RegisterProfileString('T2MVC.Suction', 'vacuum', '', '', self::PROFIL_SUCTION);
-        $this->RegisterProfileString('T2MVC.Speed', 'rabbit-running', '', '', self::PROFIL_SPEED);
-        $this->RegisterProfileInteger('T2MVC.Area', 'map', '', ' m³', 0, 9999, 1);
-        $this->RegisterProfileInteger('T2MVC.Time', 'timer', '', ' min', 0, 9999, 1);
 
         // Automatically connect to the MQTT server/splitter instance
         if ((float) IPS_GetKernelVersion() < 8.2) {
@@ -173,23 +361,31 @@ class VacuumCleaner extends IPSModuleStrict
         // Statusvariable (SyncProfile)
         $es = @$this->GetIDForIdent('status');
 
+        $mode = $this->TranslatePresentation(self::T2MVC_PRESENTATION_MODE, 'OPTIONS', 'Caption');
+        $direction = $this->TranslatePresentation(self::T2MVC_PRESENTATION_DIRECTION, 'OPTIONS', 'Caption');
+        $working = $this->TranslatePresentation(self::T2MVC_PRESENTATION_WORKING, 'OPTIONS', 'Caption');
+        $suction = $this->TranslatePresentation(self::T2MVC_PRESENTATION_SUCTION, 'OPTIONS', 'Caption');
+        $language = $this->TranslatePresentation(self::T2MVC_PRESENTATION_LANG, 'OPTIONS', 'Caption');
+        $speed = $this->TranslatePresentation(self::T2MVC_PRESENTATION_CLEAN_SPEED, 'OPTIONS', 'Caption');
+        $state = $this->TranslatePresentation(self::T2MVC_PRESENTATION_STATE, 'OPTIONS', 'Caption');
+
         // Maintain variables
         $pos = 0;
-        $this->MaintainVariable('power', $this->Translate('Power'), 0, '~Switch', $pos++, true);
-        $this->MaintainVariable('mode', $this->Translate('Mode'), 3, 'T2MVC.Mode', $pos++, true);
-        $this->MaintainVariable('direction_control', $this->Translate('Direction control'), 3, 'T2MVC.Direction', $pos++, true);
-        $this->MaintainVariable('working_status', $this->Translate('Working status'), 3, 'T2MVC.Working', $pos++, true);
-        $this->MaintainVariable('battery_left', $this->Translate('Battery left'), 1, '~Battery.100', $pos++, true);
-        $this->MaintainVariable('edge_brush', $this->Translate('Edge brush'), 1, '~Valve', $pos++, true);
-        $this->MaintainVariable('roll_brush', $this->Translate('Roll brush'), 1, '~Valve', $pos++, true);
-        $this->MaintainVariable('filter', $this->Translate('Filter'), 1, '~Valve', $pos++, true);
-        $this->MaintainVariable('suction', $this->Translate('Suction'), 3, 'T2MVC.Suction', $pos++, true);
-        $this->MaintainVariable('volume_set', $this->Translate('Volume'), 1, '~Volume', $pos++, true);
-        $this->MaintainVariable('clean_speed', $this->Translate('Clean speed'), 3, 'T2MVC.Speed', $pos++, true);
-        $this->MaintainVariable('clean_area', $this->Translate('Clean area'), 1, 'T2MVC.Area', $pos++, true);
-        $this->MaintainVariable('clean_time', $this->Translate('Clean time'), 1, 'T2MVC.Time', $pos++, true);
-        $this->MaintainVariable('status', $this->Translate('Status'), 3, 'T2M.Status', $pos++, true);
-        $this->MaintainVariable('language', $this->Translate('Language'), 3, 'T2M.Language', $pos++, true);
+        $this->MaintainVariable('power', $this->Translate('Power'), 0, self::T2MVC_PRESENTATION_SWITCH, $pos++, true);
+        $this->MaintainVariable('mode', $this->Translate('Mode'), 3, $mode, $pos++, true);
+        $this->MaintainVariable('direction_control', $this->Translate('Direction control'), 3, $direction, $pos++, true);
+        $this->MaintainVariable('working_status', $this->Translate('Working status'), 3, $working, $pos++, true);
+        $this->MaintainVariable('battery_left', $this->Translate('Battery left'), 1, self::T2MVC_PRESENTATION_BATTERY, $pos++, true);
+        $this->MaintainVariable('edge_brush', $this->Translate('Edge brush'), 1, self::T2MVC_PRESENTATION_VALVE, $pos++, true);
+        $this->MaintainVariable('roll_brush', $this->Translate('Roll brush'), 1, self::T2MVC_PRESENTATION_VALVE, $pos++, true);
+        $this->MaintainVariable('filter', $this->Translate('Filter'), 1, self::T2MVC_PRESENTATION_VALVE, $pos++, true);
+        $this->MaintainVariable('suction', $this->Translate('Suction'), 3, $suction, $pos++, true);
+        $this->MaintainVariable('volume_set', $this->Translate('Volume'), 1, self::T2MVC_PRESENTATION_VOLUME, $pos++, true);
+        $this->MaintainVariable('clean_speed', $this->Translate('Clean speed'), 3, $speed, $pos++, true);
+        $this->MaintainVariable('clean_area', $this->Translate('Clean area'), 1, self::T2MVC_PRESENTATION_CLEAN_AREA, $pos++, true);
+        $this->MaintainVariable('clean_time', $this->Translate('Clean time'), 1, self::T2MVC_PRESENTATION_CLEAN_TIME, $pos++, true);
+        $this->MaintainVariable('status', $this->Translate('Status'), 3, $state, $pos++, true);
+        $this->MaintainVariable('language', $this->Translate('Language'), 3, $language, $pos++, true);
 
         // Maintain actions
         $this->MaintainAction('language', true);
