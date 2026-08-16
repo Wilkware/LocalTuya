@@ -42,70 +42,70 @@ class CeilingFan extends IPSModuleStrict
      * @var array<string,mixed> Presentation (Switch)
      */
     private const T2MCF_PRESENTATION_SWITCH = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_SWITCH,
+        'PRESENTATION'   => VARIABLE_PRESENTATION_SWITCH,
         'USE_ICON_FALSE' => true,
-        'USAGE_TYPE' => 0,
-        'ICON_TRUE' => 'lightbulb',
-        'ICON_FALSE' => 'lightbulb-on',
+        'USAGE_TYPE'     => 0,
+        'ICON_TRUE'      => 'lightbulb',
+        'ICON_FALSE'     => 'lightbulb-on',
         'GLOW_INTENSITY' => 50,
-        'GLOW_COLOR' => 16771899,
+        'GLOW_COLOR'     => 16771899,
     ];
 
     /**
      * @var array<string,mixed> ColorTemperature Presentation (Slider)
      */
     private const T2MCF_PRESENTATION_COLOR = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_SLIDER,
-        'USAGE_TYPE' => 2,
+        'PRESENTATION'        => VARIABLE_PRESENTATION_SLIDER,
+        'USAGE_TYPE'          => 2,
         'THOUSANDS_SEPARATOR' => '',
-        'DECIMAL_SEPARATOR' => 'Client',
-        'PERCENTAGE' => false,
-        'DIGITS' => 0,
-        'INTERVALS' => '[{"IntervalMinValue":0,"IntervalMaxValue":499,"ConstantActive":true,"ConstantValue":"Cool","ConversionFactor":1,"IconActive":true,"IconValue":"dial-min","PrefixActive":false,"PrefixValue":"","SuffixActive":false,"SuffixValue":"","DigitsActive":false,"DigitsValue":0},{"IntervalMinValue":500,"IntervalMaxValue":999,"ConstantActive":true,"ConstantValue":"Neutral","ConversionFactor":1,"IconActive":true,"IconValue":"dial-med","PrefixActive":false,"PrefixValue":"","SuffixActive":false,"SuffixValue":"","DigitsActive":false,"DigitsValue":0},{"IntervalMinValue":1000,"IntervalMaxValue":1000,"ConstantActive":true,"ConstantValue":"Warm","ConversionFactor":1,"IconActive":true,"IconValue":"dial-max","PrefixActive":false,"PrefixValue":"","SuffixActive":false,"SuffixValue":"","DigitsActive":false,"DigitsValue":0}]',
-        'ICON' => 'sliders',
-        'INTERVALS_ACTIVE' => true,
-        'MAX' => 1000,
-        'GRADIENT_TYPE' => 3,
-        'MIN' => 0,
-        'CUSTOM_GRADIENT' => '[{"Value":1000,"Color":16761095},{"Value":500,"Color":16777215},{"Value":0,"Color":1155315}]',
-        'PREFIX' => '',
-        'STEP_SIZE' => 500.0,
-        'SUFFIX' => '',
+        'DECIMAL_SEPARATOR'   => 'Client',
+        'PERCENTAGE'          => false,
+        'DIGITS'              => 0,
+        'INTERVALS'           => '[{"IntervalMinValue":0,"IntervalMaxValue":499,"ConstantActive":true,"ConstantValue":"Cool","ConversionFactor":1,"IconActive":true,"IconValue":"dial-min","PrefixActive":false,"PrefixValue":"","SuffixActive":false,"SuffixValue":"","DigitsActive":false,"DigitsValue":0},{"IntervalMinValue":500,"IntervalMaxValue":999,"ConstantActive":true,"ConstantValue":"Neutral","ConversionFactor":1,"IconActive":true,"IconValue":"dial-med","PrefixActive":false,"PrefixValue":"","SuffixActive":false,"SuffixValue":"","DigitsActive":false,"DigitsValue":0},{"IntervalMinValue":1000,"IntervalMaxValue":1000,"ConstantActive":true,"ConstantValue":"Warm","ConversionFactor":1,"IconActive":true,"IconValue":"dial-max","PrefixActive":false,"PrefixValue":"","SuffixActive":false,"SuffixValue":"","DigitsActive":false,"DigitsValue":0}]',
+        'ICON'                => 'sliders',
+        'INTERVALS_ACTIVE'    => true,
+        'MAX'                 => 1000,
+        'GRADIENT_TYPE'       => 3,
+        'MIN'                 => 0,
+        'CUSTOM_GRADIENT'     => '[{"Value":1000,"Color":16761095},{"Value":500,"Color":16777215},{"Value":0,"Color":1155315}]',
+        'PREFIX'              => '',
+        'STEP_SIZE'           => 500.0,
+        'SUFFIX'              => '',
     ];
 
     /**
      * @var array<string,mixed> Fan Presentation (Switch)
      */
     private const T2MCF_PRESENTATION_FAN = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_SWITCH,
+        'PRESENTATION'   => VARIABLE_PRESENTATION_SWITCH,
         'USE_ICON_FALSE' => false,
-        'USAGE_TYPE' => 0,
-        'ICON_TRUE' => 'fan',
-        'ICON_FALSE' => 'power-off',
+        'USAGE_TYPE'     => 0,
+        'ICON_TRUE'      => 'fan',
+        'ICON_FALSE'     => 'power-off',
         'GLOW_INTENSITY' => 50,
-        'GLOW_COLOR' => 16771899,
+        'GLOW_COLOR'     => 16771899,
     ];
 
     /**
      * @var array<string,mixed> Speed Presentation (Slider)
      */
     private const T2MCF_PRESENTATION_SPEED = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_SLIDER,
-        'USAGE_TYPE' => 2,
+        'PRESENTATION'        => VARIABLE_PRESENTATION_SLIDER,
+        'USAGE_TYPE'          => 2,
         'THOUSANDS_SEPARATOR' => '',
-        'DECIMAL_SEPARATOR' => 'Client',
-        'PERCENTAGE' => false,
-        'DIGITS' => 0,
-        'INTERVALS' => '[]',
-        'ICON' => 'gauge',
-        'INTERVALS_ACTIVE' => false,
-        'MAX' => 6,
-        'GRADIENT_TYPE' => 3,
-        'MIN' => 1,
-        'CUSTOM_GRADIENT' => '[{"Value":1,"Color":49151},{"Value":2,"Color":4251856},{"Value":3,"Color":8388564},{"Value":4,"Color":11403055},{"Value":5,"Color":16766720},{"Value":6,"Color":16729344}]',
-        'PREFIX' => 'Stufe ',
-        'STEP_SIZE' => 1.0,
-        'SUFFIX' => '',
+        'DECIMAL_SEPARATOR'   => 'Client',
+        'PERCENTAGE'          => false,
+        'DIGITS'              => 0,
+        'INTERVALS'           => '[]',
+        'ICON'                => 'gauge',
+        'INTERVALS_ACTIVE'    => false,
+        'MAX'                 => 6,
+        'GRADIENT_TYPE'       => 3,
+        'MIN'                 => 1,
+        'CUSTOM_GRADIENT'     => '[{"Value":1,"Color":49151},{"Value":2,"Color":4251856},{"Value":3,"Color":8388564},{"Value":4,"Color":11403055},{"Value":5,"Color":16766720},{"Value":6,"Color":16729344}]',
+        'PREFIX'              => 'Stufe ',
+        'STEP_SIZE'           => 1.0,
+        'SUFFIX'              => '',
     ];
 
     /**
@@ -113,71 +113,71 @@ class CeilingFan extends IPSModuleStrict
      */
     private const T2MCF_PRESENTATION_DIRECTION = [
         'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
-        'OPTIONS' => '[{"Value":"forward","Caption":"Forward","IconActive":true,"IconValue":"arrows-rotate","Color":-1},{"Value":"reverse","Caption":"Reverse","IconActive":true,"IconValue":"arrows-rotate-reverse","Color":-1}]',
-        'LAYOUT' => 0,
-        'ICON' => 'compass',
-        'DISPLAY' => 0,
+        'OPTIONS'      => '[{"Value":"forward","Caption":"Forward","IconActive":true,"IconValue":"arrows-rotate","Color":-1},{"Value":"reverse","Caption":"Reverse","IconActive":true,"IconValue":"arrows-rotate-reverse","Color":-1}]',
+        'LAYOUT'       => 0,
+        'ICON'         => 'compass',
+        'DISPLAY'      => 0,
     ];
 
     /**
      * @var array<string,mixed> Beep Presentation (Switch)
      */
     private const T2MCF_PRESENTATION_BEEP = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_SWITCH,
+        'PRESENTATION'   => VARIABLE_PRESENTATION_SWITCH,
         'USE_ICON_FALSE' => true,
-        'USAGE_TYPE' => 0,
-        'ICON_TRUE' => 'bell-on',
-        'ICON_FALSE' => 'bell',
+        'USAGE_TYPE'     => 0,
+        'ICON_TRUE'      => 'bell-on',
+        'ICON_FALSE'     => 'bell',
         'GLOW_INTENSITY' => 50,
-        'GLOW_COLOR' => 16771899,
+        'GLOW_COLOR'     => 16771899,
     ];
 
     /**
      * @var array<string,mixed> Timer Presentation (Slider)
      */
     private const T2MCF_PRESENTATION_TIMER = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_SLIDER,
-        'USAGE_TYPE' => 5,
+        'PRESENTATION'        => VARIABLE_PRESENTATION_SLIDER,
+        'USAGE_TYPE'          => 5,
         'THOUSANDS_SEPARATOR' => '',
-        'DECIMAL_SEPARATOR' => 'Client',
-        'PERCENTAGE' => false,
-        'DIGITS' => 0,
-        'INTERVALS' => '[]',
-        'ICON' => 'timer',
-        'INTERVALS_ACTIVE' => false,
-        'MAX' => 540,
-        'GRADIENT_TYPE' => 0,
-        'MIN' => 0,
-        'CUSTOM_GRADIENT' => '[]',
-        'PREFIX' => '',
-        'STEP_SIZE' => 1.0,
-        'SUFFIX' => ' min',
+        'DECIMAL_SEPARATOR'   => 'Client',
+        'PERCENTAGE'          => false,
+        'DIGITS'              => 0,
+        'INTERVALS'           => '[]',
+        'ICON'                => 'timer',
+        'INTERVALS_ACTIVE'    => false,
+        'MAX'                 => 540,
+        'GRADIENT_TYPE'       => 0,
+        'MIN'                 => 0,
+        'CUSTOM_GRADIENT'     => '[]',
+        'PREFIX'              => '',
+        'STEP_SIZE'           => 1.0,
+        'SUFFIX'              => ' min',
     ];
 
     /**
      * @var array<string,mixed> State Presentation (Value)
      */
     private const T2MCF_PRESENTATION_STATE = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'USAGE_TYPE' => 0,
+        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'USAGE_TYPE'          => 0,
         'THOUSANDS_SEPARATOR' => '',
-        'SHOW_PREVIEW' => true,
-        'SUFFIX' => '',
-        'COLOR' => -1,
-        'PREFIX' => '',
-        'CONTENT_COLOR' => -1,
-        'MAX' => 0,
-        'MULTILINE' => false,
-        'DECIMAL_SEPARATOR' => 'Client',
-        'PERCENTAGE' => false,
-        'DIGITS' => 0,
-        'INTERVALS' => '[]',
-        'DISPLAY_TYPE' => 0,
-        'ICON' => '',
-        'INTERVALS_ACTIVE' => true,
-        'PREVIEW_STYLE' => 1,
-        'MIN' => 0,
-        'OPTIONS' => '[{"Value":"offline","Caption":"Offline","IconActive":true,"IconValue":"signal-slash","ColorActive":true,"ColorValue":16711680},{"Value":"online","Caption":"Online","IconActive":true,"IconValue":"signal","ColorActive":true,"ColorValue":65280},{"Value":"undefine","Caption":"Undefine","IconActive":true,"IconValue":"signal-slash","ColorActive":true,"ColorValue":255}]',
+        'SHOW_PREVIEW'        => true,
+        'SUFFIX'              => '',
+        'COLOR'               => -1,
+        'PREFIX'              => '',
+        'CONTENT_COLOR'       => -1,
+        'MAX'                 => 0,
+        'MULTILINE'           => false,
+        'DECIMAL_SEPARATOR'   => 'Client',
+        'PERCENTAGE'          => false,
+        'DIGITS'              => 0,
+        'INTERVALS'           => '[]',
+        'DISPLAY_TYPE'        => 0,
+        'ICON'                => '',
+        'INTERVALS_ACTIVE'    => true,
+        'PREVIEW_STYLE'       => 1,
+        'MIN'                 => 0,
+        'OPTIONS'             => '[{"Value":"offline","Caption":"Offline","IconActive":true,"IconValue":"signal-slash","ColorActive":true,"ColorValue":16711680},{"Value":"online","Caption":"Online","IconActive":true,"IconValue":"signal","ColorActive":true,"ColorValue":65280},{"Value":"undefine","Caption":"Undefine","IconActive":true,"IconValue":"signal-slash","ColorActive":true,"ColorValue":255}]',
     ];
 
     // -------------------------------------------------------------------------
