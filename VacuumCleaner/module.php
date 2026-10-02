@@ -42,242 +42,227 @@ class VacuumCleaner extends IPSModuleStrict
      * @var array<string,mixed> Presentation (Switch)
      */
     private const T2MVC_PRESENTATION_SWITCH = [
-        'PRESENTATION'   => VARIABLE_PRESENTATION_SWITCH,
-        'USE_ICON_FALSE' => false,
-        'USAGE_TYPE'     => 0,
-        'ICON_TRUE'      => 'power-off',
-        'ICON_FALSE'     => 'power-off',
-        'GLOW_INTENSITY' => 50,
         'GLOW_COLOR'     => 16771899,
+        'GLOW_INTENSITY' => 50,
+        'ICON_FALSE'     => 'power-off',
+        'ICON_TRUE'      => 'power-off',
+        'PRESENTATION'   => VARIABLE_PRESENTATION_SWITCH,
+        'USAGE_TYPE'     => 0,
+        'USE_ICON_FALSE' => false,
     ];
 
     /**
      * @var array<string,mixed> ModePresentation (Enumeration)
      */
     private const T2MVC_PRESENTATION_MODE = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
-        'OPTIONS'      => '[{"Value":"standby","Caption":"Standby","IconActive":false,"IconValue":"","Color":-1},{"Value":"smart","Caption":"Smart","IconActive":false,"IconValue":"","Color":-1},{"Value":"wall_follow","Caption":"Edges","IconActive":false,"IconValue":"","Color":-1},{"Value":"spiral","Caption":"Spiral","IconActive":false,"IconValue":"","Color":-1},{"Value":"partial_bow","Caption":"Zigzag","IconActive":false,"IconValue":"","Color":-1},{"Value":"chargego","Caption":"Charge","IconActive":false,"IconValue":"","Color":-1}]',
-        'LAYOUT'       => 0,
-        'ICON'         => 'vacuum-robot',
         'DISPLAY'      => 0,
+        'ICON'         => 'vacuum-robot',
+        'LAYOUT'       => 0,
+        'OPTIONS'      => '[{"Value":"standby","Caption":"Standby","IconActive":false,"IconValue":"","Color":-1},{"Value":"smart","Caption":"Smart","IconActive":false,"IconValue":"","Color":-1},{"Value":"wall_follow","Caption":"Edges","IconActive":false,"IconValue":"","Color":-1},{"Value":"spiral","Caption":"Spiral","IconActive":false,"IconValue":"","Color":-1},{"Value":"partial_bow","Caption":"Zigzag","IconActive":false,"IconValue":"","Color":-1},{"Value":"chargego","Caption":"Charge","IconActive":false,"IconValue":"","Color":-1}]',
+        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
     ];
 
     /**
      * @var array<string,mixed> Direction Presentation (Enumeration)
      */
     private const T2MVC_PRESENTATION_DIRECTION = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
-        'OPTIONS'      => '[{"Value":"forward","Caption":"Forward","IconActive":true,"IconValue":"right","Color":-1},{"Value":"turn_left","Caption":"Turn left","IconActive":true,"IconValue":"turn-left","Color":-1},{"Value":"turn_right","Caption":"Turn right","IconActive":true,"IconValue":"turn-right","Color":-1},{"Value":"stop","Caption":"Stop","IconActive":true,"IconValue":"stop","Color":-1},{"Value":"exit","Caption":"Exit","IconActive":true,"IconValue":"circle-xmark","Color":-1}]',
-        'LAYOUT'       => 0,
-        'ICON'         => 'compass',
         'DISPLAY'      => 0,
+        'ICON'         => 'compass',
+        'LAYOUT'       => 0,
+        'OPTIONS'      => '[{"Value":"forward","Caption":"Forward","IconActive":true,"IconValue":"right","Color":-1},{"Value":"turn_left","Caption":"Turn left","IconActive":true,"IconValue":"turn-left","Color":-1},{"Value":"turn_right","Caption":"Turn right","IconActive":true,"IconValue":"turn-right","Color":-1},{"Value":"stop","Caption":"Stop","IconActive":true,"IconValue":"stop","Color":-1},{"Value":"exit","Caption":"Exit","IconActive":true,"IconValue":"circle-xmark","Color":-1}]',
+        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
     ];
 
     /**
      * @var array<string,mixed> Working Presentation (Value)
      */
     private const T2MVC_PRESENTATION_WORKING = [
-        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'USAGE_TYPE'          => 0,
-        'THOUSANDS_SEPARATOR' => '',
-        'SHOW_PREVIEW'        => true,
-        'SUFFIX'              => '',
         'COLOR'               => -1,
-        'PREFIX'              => '',
         'CONTENT_COLOR'       => -1,
-        'MAX'                 => 0,
-        'MULTILINE'           => false,
-        'DECIMAL_SEPARATOR'   => 'Client',
-        'PERCENTAGE'          => false,
-        'DIGITS'              => 0,
-        'INTERVALS'           => '[]',
         'DISPLAY_TYPE'        => 0,
         'ICON'                => 'vacuum-robot',
-        'INTERVALS_ACTIVE'    => true,
+        'MULTILINE'           => false,
+        'OPTIONS'             => '[{"Value":"standby","Caption":"Standby","IconActive":false,"IconValue":""},{"Value":"smart_clean","Caption":"Smart cleaning","IconActive":false,"IconValue":""},{"Value":"wall_clean","Caption":"Edge cleaning","IconActive":false,"IconValue":""},{"Value":"spot_clean","Caption":"Spot cleaning","IconActive":false,"IconValue":""},{"Value":"mop_clean","Caption":"Mopping and cleaning","IconActive":false,"IconValue":""},{"Value":"goto_charge","Caption":"Go charging","IconActive":false,"IconValue":""},{"Value":"charging","Caption":"Charging","IconActive":false,"IconValue":""},{"Value":"charge_done","Caption":"Charged","IconActive":false,"IconValue":""},{"Value":"paused","Caption":"Paused","IconActive":false,"IconValue":""},{"Value":"cleaning","Caption":"Cleaning","IconActive":false,"IconValue":""},{"Value":"sleep","Caption":"Sleep","IconActive":false,"IconValue":""}]',
+        'PERCENTAGE'          => false,
+        'PREFIX'              => '',
+        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
         'PREVIEW_STYLE'       => 1,
-        'MIN'                 => 0,
-        'OPTIONS'             => '[{"Value":"standby","Caption":"Standby","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"smart_clean","Caption":"Smart cleaning","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"wall_clean","Caption":"Edge cleaning","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"spot_clean","Caption":"Spot cleaning","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"mop_clean","Caption":"Mopping and cleaning","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"goto_charge","Caption":"Go charging","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"charging","Caption":"Charging","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"charge_done","Caption":"Charged","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"paused","Caption":"Paused","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"cleaning","Caption":"Cleaning","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1},{"Value":"sleep","Caption":"Sleep","IconActive":false,"IconValue":"","ColorActive":true,"ColorValue":-1}]',
+        'SHOW_PREVIEW'        => true,
+        'SUFFIX'              => '',
+        'USAGE_TYPE'          => 0,
     ];
 
     /**
      * @var array<string,mixed> Battery Presentation (Value)
      */
     private const T2MVC_PRESENTATION_BATTERY = [
-        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'USAGE_TYPE'          => 0,
-        'THOUSANDS_SEPARATOR' => '',
-        'SHOW_PREVIEW'        => true,
-        'SUFFIX'              => ' %',
         'COLOR'               => -1,
-        'MAX'                 => 100,
-        'MULTILINE'           => false,
+        'CONTENT_COLOR'       => -1,
         'DECIMAL_SEPARATOR'   => 'Client',
-        'PERCENTAGE'          => true,
         'DIGITS'              => 0,
-        'INTERVALS'           => '[]',
         'DISPLAY_TYPE'        => 0,
         'ICON'                => 'Battery',
+        'INTERVALS'           => '[]',
         'INTERVALS_ACTIVE'    => false,
-        'PREVIEW_STYLE'       => 1,
+        'MAX'                 => 100,
         'MIN'                 => 0,
-        'CONTENT_COLOR'       => -1,
+        'MULTILINE'           => false,
+        'PERCENTAGE'          => true,
         'PREFIX'              => '',
+        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'PREVIEW_STYLE'       => 1,
+        'SHOW_PREVIEW'        => true,
+        'SUFFIX'              => ' %',
+        'THOUSANDS_SEPARATOR' => '',
+        'USAGE_TYPE'          => 0,
     ];
 
     /**
      * @var array<string,mixed> Valve Presentation (Value)
      */
     private const T2MVC_PRESENTATION_VALVE = [
-        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'USAGE_TYPE'          => 0,
-        'THOUSANDS_SEPARATOR' => '',
-        'SHOW_PREVIEW'        => true,
-        'SUFFIX'              => ' %',
         'COLOR'               => -1,
-        'MAX'                 => 100,
-        'MULTILINE'           => false,
+        'CONTENT_COLOR'       => -1,
         'DECIMAL_SEPARATOR'   => 'Client',
-        'PERCENTAGE'          => true,
         'DIGITS'              => 0,
-        'INTERVALS'           => '[]',
         'DISPLAY_TYPE'        => 0,
         'ICON'                => 'Gauge',
+        'INTERVALS'           => '[]',
         'INTERVALS_ACTIVE'    => false,
-        'PREVIEW_STYLE'       => 1,
+        'MAX'                 => 100,
         'MIN'                 => 0,
-        'CONTENT_COLOR'       => -1,
+        'MULTILINE'           => false,
+        'PERCENTAGE'          => true,
         'PREFIX'              => '',
+        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'PREVIEW_STYLE'       => 1,
+        'SHOW_PREVIEW'        => true,
+        'SUFFIX'              => ' %',
+        'THOUSANDS_SEPARATOR' => '',
+        'USAGE_TYPE'          => 0,
     ];
 
     /**
      * @var array<string,mixed> Clean Area Presentation (Value)
      */
     private const T2MVC_PRESENTATION_CLEAN_AREA = [
-        'USAGE_TYPE'          => 0,
-        'THOUSANDS_SEPARATOR' => '',
-        'SHOW_PREVIEW'        => true,
-        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'SUFFIX'              => ' m³',
         'COLOR'               => -1,
-        'MAX'                 => 9999,
-        'MULTILINE'           => false,
+        'CONTENT_COLOR'       => -1,
         'DECIMAL_SEPARATOR'   => 'Client',
-        'PERCENTAGE'          => false,
         'DIGITS'              => 0,
-        'INTERVALS'           => '[]',
         'DISPLAY_TYPE'        => 0,
         'ICON'                => 'map',
+        'INTERVALS'           => '[]',
         'INTERVALS_ACTIVE'    => false,
-        'PREVIEW_STYLE'       => 1,
+        'MAX'                 => 9999,
         'MIN'                 => 0,
-        'CONTENT_COLOR'       => -1,
+        'PERCENTAGE'          => false,
         'PREFIX'              => '',
+        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'PREVIEW_STYLE'       => 1,
+        'SHOW_PREVIEW'        => true,
+        'SUFFIX'              => ' m²',
+        'THOUSANDS_SEPARATOR' => '',
+        'USAGE_TYPE'          => 0,
     ];
 
     /**
      * @var array<string,mixed> Clean Time Presentation (Value)
      */
     private const T2MVC_PRESENTATION_CLEAN_TIME = [
-        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'USAGE_TYPE'          => 0,
-        'THOUSANDS_SEPARATOR' => '',
-        'SHOW_PREVIEW'        => true,
-        'SUFFIX'              => ' min',
         'COLOR'               => -1,
-        'MAX'                 => 9999,
-        'MULTILINE'           => false,
+        'CONTENT_COLOR'       => -1,
         'DECIMAL_SEPARATOR'   => 'Client',
-        'PERCENTAGE'          => false,
         'DIGITS'              => 0,
-        'INTERVALS'           => '[]',
         'DISPLAY_TYPE'        => 0,
         'ICON'                => 'timer',
+        'INTERVALS'           => '[]',
         'INTERVALS_ACTIVE'    => false,
-        'PREVIEW_STYLE'       => 1,
+        'MAX'                 => 9999,
         'MIN'                 => 0,
-        'CONTENT_COLOR'       => -1,
+        'MULTILINE'           => false,
+        'PERCENTAGE'          => false,
         'PREFIX'              => '',
+        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'PREVIEW_STYLE'       => 1,
+        'SHOW_PREVIEW'        => true,
+        'SUFFIX'              => ' min',
+        'THOUSANDS_SEPARATOR' => '',
+        'USAGE_TYPE'          => 0,
     ];
 
     /**
      * @var array<string,mixed> Suction Presentation (Enumeration)
      */
     private const T2MVC_PRESENTATION_SUCTION = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
-        'OPTIONS'      => '[{"Value":"strong","Caption":"Strong","IconActive":false,"IconValue":"","Color":-1},{"Value":"normal","Caption":"Normal","IconActive":false,"IconValue":"","Color":-1},{"Value":"gentle","Caption":"Gentle","IconActive":false,"IconValue":"","Color":-1}]',
-        'LAYOUT'       => 0,
-        'ICON'         => 'vacuum',
         'DISPLAY'      => 0,
+        'ICON'         => 'vacuum',
+        'LAYOUT'       => 0,
+        'OPTIONS'      => '[{"Value":"strong","Caption":"Strong","IconActive":false,"IconValue":"","Color":-1},{"Value":"normal","Caption":"Normal","IconActive":false,"IconValue":"","Color":-1},{"Value":"gentle","Caption":"Gentle","IconActive":false,"IconValue":"","Color":-1}]',
+        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
     ];
 
     /**
      * @var array<string,mixed> Volume Presentation (Slider)
      */
     private const T2MVC_PRESENTATION_VOLUME = [
-        'PRESENTATION'        => VARIABLE_PRESENTATION_SLIDER,
-        'USAGE_TYPE'          => 3,
-        'THOUSANDS_SEPARATOR' => '',
+        'CUSTOM_GRADIENT'     => '[]',
         'DECIMAL_SEPARATOR'   => 'Client',
-        'PERCENTAGE'          => true,
         'DIGITS'              => 0,
-        'INTERVALS'           => '[]',
+        'GRADIENT_TYPE'       => 0,
         'ICON'                => 'Speaker',
+        'INTERVALS'           => '[]',
         'INTERVALS_ACTIVE'    => false,
         'MAX'                 => 100,
-        'GRADIENT_TYPE'       => 0,
         'MIN'                 => 0,
-        'CUSTOM_GRADIENT'     => '[]',
+        'PERCENTAGE'          => true,
         'PREFIX'              => '',
+        'PRESENTATION'        => VARIABLE_PRESENTATION_SLIDER,
         'STEP_SIZE'           => 1.0,
         'SUFFIX'              => ' %',
+        'THOUSANDS_SEPARATOR' => '',
+        'USAGE_TYPE'          => 3,
     ];
 
     /**
      * @var array<string,mixed> Language Presentation (Enumeration)
      */
     private const T2MVC_PRESENTATION_LANG = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
-        'OPTIONS'      => '[{"Value":"english","Caption":"English","IconActive":false,"IconValue":"","Color":-1},{"Value":"german","Caption":"German","IconActive":false,"IconValue":"","Color":-1},{"Value":"french","Caption":"French","IconActive":false,"IconValue":"","Color":-1},{"Value":"russian","Caption":"Russian","IconActive":false,"IconValue":"","Color":-1},{"Value":"spanish","Caption":"Spanish","IconActive":false,"IconValue":"","Color":-1},{"Value":"italian","Caption":"Italian","IconActive":false,"IconValue":"","Color":-1}]',
-        'LAYOUT'       => 0,
-        'ICON'         => 'language',
         'DISPLAY'      => 0,
+        'ICON'         => 'language',
+        'LAYOUT'       => 0,
+        'OPTIONS'      => '[{"Value":"english","Caption":"English","IconActive":false,"IconValue":"","Color":-1},{"Value":"german","Caption":"German","IconActive":false,"IconValue":"","Color":-1},{"Value":"french","Caption":"French","IconActive":false,"IconValue":"","Color":-1},{"Value":"russian","Caption":"Russian","IconActive":false,"IconValue":"","Color":-1},{"Value":"spanish","Caption":"Spanish","IconActive":false,"IconValue":"","Color":-1},{"Value":"italian","Caption":"Italian","IconActive":false,"IconValue":"","Color":-1}]',
+        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
     ];
 
     /**
      * @var array<string,mixed> Clean speed Presentation (Enumeration)
      */
     private const T2MVC_PRESENTATION_CLEAN_SPEED = [
-        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
-        'OPTIONS'      => '[{"Value":"careful_clean","Caption":"Careful clean","IconValue":"turtle","IconActive":true,"Color":-1},{"Value":"speed_clean","Caption":"Speed clean","IconValue":"rabbit-running","IconActive":true,"Color":-1}]',
-        'LAYOUT'       => 0,
-        'ICON'         => '',
         'DISPLAY'      => 0,
+        'ICON'         => '',
+        'LAYOUT'       => 0,
+        'OPTIONS'      => '[{"Value":"careful_clean","Caption":"Careful clean","IconValue":"turtle","IconActive":true,"Color":-1},{"Value":"speed_clean","Caption":"Speed clean","IconValue":"rabbit-running","IconActive":true,"Color":-1}]',
+        'PRESENTATION' => VARIABLE_PRESENTATION_ENUMERATION,
     ];
 
     /**
      * @var array<string,mixed> State Presentation (Value)
      */
     private const T2MVC_PRESENTATION_STATE = [
-        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'USAGE_TYPE'          => 0,
-        'THOUSANDS_SEPARATOR' => '',
-        'SHOW_PREVIEW'        => true,
-        'SUFFIX'              => '',
-        'COLOR'               => -1,
-        'PREFIX'              => '',
-        'CONTENT_COLOR'       => -1,
-        'MAX'                 => 0,
-        'MULTILINE'           => false,
-        'DECIMAL_SEPARATOR'   => 'Client',
-        'PERCENTAGE'          => false,
-        'DIGITS'              => 0,
-        'INTERVALS'           => '[]',
-        'DISPLAY_TYPE'        => 0,
-        'ICON'                => '',
-        'INTERVALS_ACTIVE'    => true,
-        'PREVIEW_STYLE'       => 1,
-        'MIN'                 => 0,
-        'OPTIONS'             => '[{"Value":"offline","Caption":"Offline","IconActive":true,"IconValue":"signal-slash","ColorActive":true,"ColorValue":16711680},{"Value":"online","Caption":"Online","IconActive":true,"IconValue":"signal","ColorActive":true,"ColorValue":65280},{"Value":"undefine","Caption":"Undefine","IconActive":true,"IconValue":"signal-slash","ColorActive":true,"ColorValue":255}]',
+        'COLOR'         => -1,
+        'CONTENT_COLOR' => -1,
+        'DISPLAY_TYPE'  => 0,
+        'ICON'          => '',
+        'MULTILINE'     => false,
+        'OPTIONS'       => '[{"Caption":"Offline","ColorActive":true,"ColorValue":16711680,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal-slash","Value":"offline"},{"Caption":"Online","ColorActive":true,"ColorValue":65280,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal","Value":"online"},{"Caption":"Undefiniert","ColorActive":true,"ColorValue":255,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal-slash","Value":"undefine"}]',
+        'PERCENTAGE'    => false,
+        'PREFIX'        => '',
+        'PRESENTATION'  => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'PREVIEW_STYLE' => 1,
+        'SHOW_PREVIEW'  => true,
+        'SUFFIX'        => '',
+        'USAGE_TYPE'    => 0,
     ];
 
     // -------------------------------------------------------------------------
@@ -285,7 +270,7 @@ class VacuumCleaner extends IPSModuleStrict
     // -------------------------------------------------------------------------
 
     /**
-     * In contrast to Construct, this function is called only once when creating the instance and starting IP-Symcon.
+     * In contrast to Construct, this function is called only once when creating the instance and starting Symcon.
      * Therefore, status variables and module properties which the module requires permanently should be created here.
      *
      * @return void
@@ -303,11 +288,14 @@ class VacuumCleaner extends IPSModuleStrict
         if ((float) IPS_GetKernelVersion() < 8.2) {
             $this->ConnectParent(self::GUID_MQTT_IO);
         }
+
+        // Request all states after system start
+        $this->RegisterMessage(0, IPS_KERNELSTARTED);
     }
 
     /**
      * This function is called when deleting the instance during operation and when updating via "Module Control".
-     * The function is not called when exiting IP-Symcon.
+     * The function is not called when exiting Symcon.
      *
      * @return void
      */
@@ -342,18 +330,20 @@ class VacuumCleaner extends IPSModuleStrict
         //Never delete this line!
         parent::ApplyChanges();
 
-        $base = $this->ReadPropertyString('MQTTBaseTopic');
+        $base = $this->GetBaseTopic();
         $topic = $this->ReadPropertyString('MQTTTopic');
 
         // Check setup
         if (empty($base) || empty($topic)) {
+            // Receive nothing as long as the topics are not configured
+            $this->SetReceiveDataFilter('^$');
             $this->SetStatus(201);
             return;
         } else {
-            // Set filter
-            $filter = preg_quote($this->ReadPropertyString('MQTTBaseTopic') . '/' . $this->ReadPropertyString('MQTTTopic'));
-            $this->LogDebug(__FUNCTION__, 'Filter: .*' . $filter . '.*');
-            $this->SetReceiveDataFilter('.*' . $filter . '.*');
+            // Set filter (device topics and bridge status)
+            $filter = '.*(' . preg_quote($base . '/' . $topic . '/') . '|' . preg_quote($base . '/bridge/status') . ').*';
+            $this->LogDebug(__FUNCTION__, 'Filter: ' . $filter);
+            $this->SetReceiveDataFilter($filter);
         }
 
         // Initialize
@@ -402,6 +392,31 @@ class VacuumCleaner extends IPSModuleStrict
 
         // All ready
         $this->SetStatus(102);
+
+        // tuya2mqtt only publishes changed values, so request the current states
+        if (IPS_GetKernelRunlevel() === KR_READY) {
+            $this->RequestStates();
+        }
+    }
+
+    /**
+     * The content of the function can be overwritten in order to carry out own reactions to certain messages.
+     * The function is only called for registered MessageIDs/SenderIDs combinations.
+     *
+     * @param int              $timestamp Continuous counter timestamp
+     * @param int              $sender    Sender ID
+     * @param int              $message   ID of the message
+     * @param array<int,mixed> $data      Data of the message
+     * @return void
+     */
+    public function MessageSink(int $timestamp, int $sender, int $message, array $data): void
+    {
+        switch ($message) {
+            case IPS_KERNELSTARTED:
+                $this->LogDebug(__FUNCTION__, 'Kernel started -> request states!');
+                $this->RequestStates();
+                break;
+        }
     }
 
     /**
@@ -443,7 +458,7 @@ class VacuumCleaner extends IPSModuleStrict
     }
 
     /**
-     * This function is called by IP-Symcon and processes sent data and, if necessary, forwards it to
+     * This function is called by Symcon and processes sent data and, if necessary, forwards it to
      * all child instances. Data can be sent using the SendDataToChildren function.
      *
      * @param string $json Data package in JSON format
@@ -458,6 +473,13 @@ class VacuumCleaner extends IPSModuleStrict
         $payload = hex2bin($data->Payload);
         $this->LogDebug(__FUNCTION__, 'Received Topic: ' . $topic . ' Payload: ' . $payload);
 
+        // Bridge status (MQTT last will), the retained device status may be outdated if tuya2mqtt crashes
+        if ($topic === $this->GetBaseTopic() . '/bridge/status') {
+            if ($payload === 'offline') {
+                $this->SetValueString('status', 'offline');
+            }
+            return '';
+        }
         if (fnmatch('*/status', $topic)) {
             $this->SetValueString('status', strval($payload));
         }
@@ -522,11 +544,34 @@ class VacuumCleaner extends IPSModuleStrict
         $server['PacketType'] = 3;
         $server['QualityOfService'] = 0;
         $server['Retain'] = false;
-        $server['Topic'] = $this->ReadPropertyString('MQTTBaseTopic') . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $topic;
+        $server['Topic'] = $this->GetBaseTopic() . '/' . $this->ReadPropertyString('MQTTTopic') . '/' . $topic;
         $server['Payload'] = bin2hex($payload);
         $json = json_encode($server, JSON_UNESCAPED_SLASHES);
         $this->LogDebug(__FUNCTION__ . 'MQTT Server', $json);
         $resultServer = @$this->SendDataToParent($json);
         return $resultServer !== '';
+    }
+
+    /**
+     * Returns the configured base topic without trailing slash.
+     *
+     * @return string Base topic
+     */
+    private function GetBaseTopic(): string
+    {
+        return rtrim($this->ReadPropertyString('MQTTBaseTopic'), '/');
+    }
+
+    /**
+     * Requests all current states of the device (get-states).
+     *
+     * @return void
+     */
+    private function RequestStates(): void
+    {
+        if ($this->GetStatus() !== 102 || !$this->HasActiveParent()) {
+            return;
+        }
+        $this->SendMQTT('command', 'get-states');
     }
 }

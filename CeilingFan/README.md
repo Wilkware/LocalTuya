@@ -2,18 +2,18 @@
 
 [![Version](https://img.shields.io/badge/Symcon-PHP--Modul-red.svg?style=flat-square)](https://www.symcon.de/service/dokumentation/entwicklerbereich/sdk-tools/sdk-php/)
 [![Product](https://img.shields.io/badge/Symcon%20Version-8.1-blue.svg?style=flat-square)](https://www.symcon.de/produkt/)
-[![Version](https://img.shields.io/badge/Modul%20Version-2.1.20250926-orange.svg?style=flat-square)](https://github.com/Wilkware/LocalTuya)
+[![Version](https://img.shields.io/badge/Modul%20Version-2.3.20261002-orange.svg?style=flat-square)](https://github.com/Wilkware/LocalTuya)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-green.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Actions](https://img.shields.io/github/actions/workflow/status/wilkware/LocalTuya/ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/Wilkware/LocalTuya/actions)
 
-Das Modul bietet die Möglichkeit, mit einem kombatiblen Deckenventilator über das lokale Netzwerk zu kommunizieren.
+Das Modul bietet die Möglichkeit, mit einem kompatiblen Deckenventilator über das lokale Netzwerk zu kommunizieren.
 
 ## Inhaltverzeichnis
 
 1. [Funktionsumfang](#user-content-1-funktionsumfang)
 2. [Voraussetzungen](#user-content-2-voraussetzungen)
 3. [Installation](#user-content-3-installation)
-4. [Einrichten der Instanzen in IP-Symcon](#user-content-4-einrichten-der-instanzen-in-ip-symcon)
+4. [Einrichten der Instanzen in Symcon](#user-content-4-einrichten-der-instanzen-in-symcon)
 5. [Statusvariablen und Profile](#user-content-5-statusvariablen-und-profile)
 6. [Visualisierung](#user-content-6-visualisierung)
 7. [PHP-Befehlsreferenz](#user-content-7-php-befehlsreferenz)
@@ -21,12 +21,13 @@ Das Modul bietet die Möglichkeit, mit einem kombatiblen Deckenventilator über 
 
 ### 1. Funktionsumfang
 
-Das Modules kommuniziert via MQTT mit dem Deckenventilator und bietet neben dem Auslesen aller Geräteinformationen auch das Steuern des Ventilators über die Statusvariablen.  
+Das Modul kommuniziert via MQTT mit dem Deckenventilator und bietet neben dem Auslesen aller Geräteinformationen auch das Steuern des Ventilators über die Statusvariablen.  
 Eine genaue Beschreibung der für den Deckenventilator verfügbaren Befehlsumfang kann man im [Tuya Developer Portal](https://developer.tuya.com/en/) einsehen.
 
 ### 2. Voraussetzungen
 
-* IP-Symcon ab Version 7.2
+* Symcon ab Version 8.1
+* tuya2mqtt ab Version 1.5.0 (für Bridge-Status und den Abruf aller Werte beim Start)
 
 Notwendige Voraussetzung ist eine funktionsfähige und laufende Installation von [Tuya2Mqtt](https://github.com/Wilkware/tuya2mqtt). Dessen Installation, Konfiguration und der Betrieb ist hier beschrieben: [README](https://github.com/Wilkware/tuya2mqtt/blob/main/README.md).  
 Dort findet man ebenfalls die unterstützten Tuya Geräte.
@@ -39,7 +40,7 @@ Getestet mit meinem Deckenventilator WINDCALM von CREATE.
 * Alternativ Über das Modul-Control folgende URL hinzufügen.  
 `https://github.com/Wilkware/LocalTuya` oder `git://github.com/Wilkware/LocalTuya.git`
 
-### 4. Einrichten der Instanzen in IP-Symcon
+### 4. Einrichten der Instanzen in Symcon
 
 * Unter "Instanz hinzufügen" ist das _'Tuya Deckenventilator'_-Modul unter dem Hersteller _'(Geräte)'_ aufgeführt.
 
@@ -51,8 +52,8 @@ Einstellungsbereich:
 
 Name                        | Beschreibung
 --------------------------- | ----------------------------------
-MQTT Base Topic             | Ist das grundlegende Themenpräfix, unter dem alle spezifischen Subtopics für Nachrichten in einem MQTT-System organisiert werden. Standardmäßig ist der Präfix auf _'tuya2mqtt'_ vorbelegt.
-MQTT Topic                  | Ist der eindeutige Geräte-Pfad, der zum Veröffentlichen und Abonnieren von Nachrichten verwendet wird. __HINWEIS:__ Immer in Kleinbuchstaben angeben!
+MQTT Base Topic             | Ist das grundlegende Themenpräfix, unter dem alle spezifischen Subtopics für Nachrichten in einem MQTT-System organisiert werden. Standardmäßig ist der Präfix auf _'tuya2mqtt'_ vorbelegt. Er muss dem `topic` aus der `config.json` von tuya2mqtt entsprechen, darf mehrstufig sein (z. B. _'home/tuya'_) und ein abschließender `/` wird ignoriert.
+MQTT Topic                  | Ist der eindeutige Geräte-Pfad, der zum Veröffentlichen und Abonnieren von Nachrichten verwendet wird. __HINWEIS:__ tuya2mqtt bildet den Pfad aus dem Gerätenamen in Kleinbuchstaben, Leerzeichen sowie die Zeichen `+`, `#` und `/` werden durch `_` ersetzt (z. B. _'Wohnzimmer Lampe'_ → _'wohnzimmer_lampe'_). Ohne Namen wird die Geräte-ID verwendet.
 
 
 _Aktionsbereich:_
@@ -61,30 +62,26 @@ Aktion                  | Beschreibung
 ----------------------- | ---------------------------------
 AKTUALISIEREN           | Löst eine Nachricht aus, welche versucht alle Status(Geräte)informationen vom Gerät abzurufen.
 
-### 5. Statusvariablen und Profile
+Da tuya2mqtt Werte nur noch bei Änderungen veröffentlicht, fordert das Modul beim Systemstart und nach dem Übernehmen der Konfiguration automatisch alle aktuellen Werte an (`get-states`).
 
-Die Statusvariablen werden automatisch angelegt. Das Löschen einzelner kann hilfreich sein, z.B. wenn entsprechender Befehl/Status nicht vom Roboter unterstützt wird.
+### 5. Statusvariablen und Darstellungen
+
+Die Statusvariablen werden automatisch angelegt. Das Löschen einzelner kann hilfreich sein, z.B. wenn entsprechender Befehl/Status nicht vom Ventilator unterstützt wird.
 
 Name                        | Typ       | Beschreibung
 --------------------------- | --------- | ----------------
-Status                      | String    | Verfügbarkeitsstaus (siehe T2M.Status)
+Status                      | String    | Verfügbarkeitsstatus: Online (online), Offline (offline) oder Undefiniert (undefine)
 Licht                       | Boolean   | Licht schalten (AN, AUS)
-Farbtemperatur              | Integer   | Warm (0), Neutral(500) oder Kühl (1000)
+Farbtemperatur              | Integer   | Farbtemperatur von 0 bis 1000 in drei Stufen: Kühl, Neutral, Warm
 Ventilator                  | Boolean   | Ventilator schalten (AN, AUS)
-Geschwindigkeit             | Integer   | Stufen von 1 bis 6
+Geschwindigkeit             | Integer   | Stufen von 1 bis 6 (schaltet den Ventilator bei Bedarf mit ein)
 Richtung                    | String    | 'Vorwärts' oder 'Rückwärts'
-Verbleibende Zeit           | Integer   | Restlaufzeit bei eingestellten Timer (in Minuten und Sekunden)
+Verbleibende Zeit           | Integer   | Restlaufzeit des eingestellten Timers (0 bis 540 min)
 Piepton                     | Boolean   | Bei jeder Schaltaktion einen Ton ausgeben (AN, AUS)
 
-Folgendes Profil wird angelegt:
+Statt Profilen werden Darstellungen verwendet, die das Modul direkt an den Variablen setzt.
 
-Name                 | Typ       | Beschreibung
--------------------- | --------- | ----------------
-T2M.Status           | String    | Online (online), Offline (offline) oder Undefinierd (undefined)
-T2MCF.ColorTemp      | Integer   | Farbtemperatur ind 3 Assoziationen: Warm (0), Neutral(500) und Kühl (1000)
-T2MCF.Direction      | String    | 'Vorwärts' oder 'Rückwärts'
-T2MCF.Speed          | Integer   | Stufe 1 .. Stufe 6
-T2MCF.Countdown      | Integer   | 0 bis 540 Sekunden (0:00 min)
+Der Status wird zusätzlich über den Bridge-Status von tuya2mqtt (`<Base Topic>/bridge/status`) abgesichert: Meldet die Bridge _'offline'_ (z. B. per MQTT Last Will nach einem Absturz), wird der Status auf _'offline'_ gesetzt.
 
 ### 6. Visualisierung
 
@@ -95,6 +92,21 @@ Man kann die Instanz bzw. Statusvariablen direkt in die Visualisierung verlinken
 Das Modul stellt keine direkten Funktionsaufrufe zur Verfügung.
 
 ### 8. Versionshistorie
+
+v2.3.20261002
+
+* _NEU_: Profile durch Darstellungen ersetzt
+* _NEU_: Bridge-Status von tuya2mqtt wird ausgewertet (Status _'offline'_ bei Absturz der Bridge)
+* _NEU_: Automatischer Abruf aller Werte beim Systemstart und nach Übernahme der Konfiguration (get-states)
+* _NEU_: Mehrstufiges Base Topic möglich, abschließender `/` wird ignoriert
+* _FIX_: Beim Ändern der Geschwindigkeit wird der Ventilator mit eingeschaltet, da das Gerät ihn sonst trotz Anlaufen weiter als aus meldet
+* _FIX_: Empfangsfilter präzisiert (nur Geräte-Topics und Bridge-Status)
+* _FIX_: Übersetzung der Darstellungen (Farbtemperatur, Richtung, Geschwindigkeit) korrigiert
+* _FIX_: Dokumentation überarbeitet und Schreibfehler korrigiert
+
+v2.2.20260319
+
+* _FIX_: Kompatibilität für IPS größer 8.2 hergestellt
 
 v2.1.20250926
 
@@ -123,7 +135,7 @@ v1.0.20250125
 
 ## Entwickler
 
-Seit nunmehr über 10 Jahren fasziniert mich das Thema Haussteuerung. In den letzten Jahren betätige ich mich auch intensiv in der IP-Symcon Community und steuere dort verschiedenste Skript und Module bei. Ihr findet mich dort unter dem Namen @pitti ;-)
+Seit nunmehr über 10 Jahren fasziniert mich das Thema Haussteuerung. In den letzten Jahren betätige ich mich auch intensiv in der Symcon Community und steuere dort verschiedenste Skript und Module bei. Ihr findet mich dort unter dem Namen @pitti ;-)
 
 [![GitHub](https://img.shields.io/badge/GitHub-@wilkware-181717.svg?style=for-the-badge&logo=github)](https://wilkware.github.io/)
 
