@@ -56,6 +56,8 @@
             "Careful clean": "Gründlich",
             "Speed clean": "Schnell",
             "Update": "Aktualisieren",
+            "🧪 Test functions ...": "🧪 Testfunktionen ...",
+            "Requests all current states directly from the device.": "Fragt alle aktuellen Zustände direkt vom Gerät ab.",
             "MQTT settings incorrect": "MQTT Einstellungen fehlerhaft",
             "🎗️ Source code, donation and licence ...": "🎗️ Quellcode, Spende und Lizenz ...",
             "The software is free of charge for non-commercial use, I would appreciate a donation if you like the module.": "Die Software ist für die nicht kommerzielle Nutzung kostenlos, über eine Spende bei Gefallen des Moduls würde ich mich sehr freuen."

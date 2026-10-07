@@ -7,6 +7,7 @@ require_once __DIR__ . '/../libs/_traits.php';
 
 /** Namespaced traits */
 use Wilkware\LocalTuya\DebugHelper;
+use Wilkware\LocalTuya\FormHelper;
 use Wilkware\LocalTuya\VariableHelper;
 
 /**
@@ -19,6 +20,7 @@ class CeilingFan extends IPSModuleStrict
     // -------------------------------------------------------------------------
 
     use DebugHelper;
+    use FormHelper;
     use VariableHelper;
 
     // -------------------------------------------------------------------------
@@ -225,6 +227,16 @@ class CeilingFan extends IPSModuleStrict
         // Get Form
         $form = json_decode(file_get_contents(__DIR__ . '/form.json'), true);
         //$this->LogDebug(__FUNCTION__, $form);
+        // Extract Version
+        $ins = IPS_GetInstance($this->InstanceID);
+        $mod = IPS_GetModule($ins['ModuleInfo']['ModuleID']);
+        $lib = IPS_GetLibrary($mod['LibraryID']);
+        $version = sprintf('v%s.%d', $lib['Version'], $lib['Build']);
+        $this->ModifyFormElement($form['actions'], 'Version', function (array &$element) use ($version): void
+        {
+            $element['caption'] = $version;
+        });
+        // return form
         return json_encode($form);
     }
 

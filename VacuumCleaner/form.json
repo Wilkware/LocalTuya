@@ -60,13 +60,23 @@
     ],
     "actions": [
         {
-            "type": "RowLayout",
+            "type": "ExpansionPanel",
+            "caption": "🧪 Test functions ...",
             "items": [
                 {
-                    "type": "Button",
-                    "name": "Update",
-                    "caption": "Update",
-                    "onClick": "IPS_RequestAction($id,'get-states', true);"
+                    "type": "Label",
+                    "caption": "Requests all current states directly from the device."
+                },
+                {
+                    "type": "RowLayout",
+                    "items": [
+                        {
+                            "type": "Button",
+                            "name": "Update",
+                            "caption": "Update",
+                            "onClick": "IPS_RequestAction($id,'get-states', true);"
+                        }
+                    ]
                 }
             ]
         },
@@ -112,6 +122,11 @@
                             "onClick": "echo 'https://creativecommons.org/licenses/by-nc-sa/4.0/';"
                         }
                     ]
+                },
+                {
+                    "type": "Label",
+                    "name": "Version",
+                    "color": 8421504
                 }
             ]
         }

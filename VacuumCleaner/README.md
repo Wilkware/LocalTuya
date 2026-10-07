@@ -13,11 +13,12 @@ Das Modul bietet die Möglichkeit, mit einem kompatiblen Saugroboter über das l
 1. [Funktionsumfang](#user-content-1-funktionsumfang)
 2. [Voraussetzungen](#user-content-2-voraussetzungen)
 3. [Installation](#user-content-3-installation)
-4. [Einrichten der Instanzen in Symcon](#user-content-4-einrichten-der-instanzen-in-symcon)
-5. [Statusvariablen und Profile](#user-content-5-statusvariablen-und-profile)
-6. [Visualisierung](#user-content-6-visualisierung)
-7. [PHP-Befehlsreferenz](#user-content-7-php-befehlsreferenz)
-8. [Versionshistorie](#user-content-8-versionshistorie)
+4. [Einrichtung](#user-content-4-einrichtung)
+5. [Statusvariablen](#user-content-5-statusvariablen)
+6. [Darstellungen](#user-content-6-darstellungen)
+7. [Visualisierung](#user-content-7-visualisierung)
+8. [Befehlsreferenz](#user-content-8-befehlsreferenz)
+9. [Versionshistorie](#user-content-9-versionshistorie)
 
 ### 1. Funktionsumfang
 
@@ -38,18 +39,18 @@ Getestet mit meinem Saugroboter P20 von AIRROBO.
 ### 3. Installation
 
 * Über den Modul Store die Bibliothek _LocalTuya_ installieren.
-* Alternativ Über das Modul-Control folgende URL hinzufügen.  
+* Alternativ über das Modul Control folgende URL hinzufügen.  
 `https://github.com/Wilkware/LocalTuya` oder `git://github.com/Wilkware/LocalTuya.git`
 
-### 4. Einrichten der Instanzen in Symcon
+### 4. Einrichtung
 
-* Unter "Instanz hinzufügen" ist das _'Tuya Saugroboter'_-Modul unter dem Hersteller _'(Geräte)'_ aufgeführt.
+* Unter 'Instanz hinzufügen' ist das _Saugroboter_-Modul (Alias: _Tuya Saugroboter_) unter dem Hersteller '(Geräte)' aufgeführt.
 
 __Konfigurationsseite__:
 
 Einstellungsbereich:
 
-> 📳 Geräteinformationen …
+> 📳 Geräteinformationen ...
 
 Name                        | Beschreibung
 --------------------------- | ----------------------------------
@@ -65,41 +66,61 @@ AKTUALISIEREN           | Löst eine Nachricht aus, welche versucht alle Status(
 
 Da tuya2mqtt Werte nur noch bei Änderungen veröffentlicht, fordert das Modul beim Systemstart und nach dem Übernehmen der Konfiguration automatisch alle aktuellen Werte an (`get-states`).
 
-### 5. Statusvariablen und Darstellungen
+### 5. Statusvariablen
 
 Die Statusvariablen werden automatisch angelegt. Das Löschen einzelner kann hilfreich sein, z.B. wenn entsprechender Befehl/Status nicht vom Roboter unterstützt wird.
 
-Name                        | Typ       | Beschreibung
---------------------------- | --------- | ----------------
-Status                      | String    | Verfügbarkeitsstatus: Online (online), Offline (offline) oder Undefiniert (undefine)
-Betrieb                     | Boolean   | Betriebszustand (AN, AUS)
-Modus                       | String    | Aktueller Gerätemodus: Bereit, Intelligent, Kanten, Spiral, Zickzack, Laden
-Zustand                     | String    | Aktueller Betriebsstatus: Bereit, Intelligente Reinigung, Kantenreinigung, Punktuelle Reinigung, Wischen und Reinigen, Zum Aufladen, Aufladen, Voll aufgeladen, Pausiert, Reinigen, Schlafen
-Richtungssteuerung          | String    | Steuerung der Richtungsbewegung: Vorwärts, Links drehen, Rechts drehen, Stop, Exit
-Batterieladung              | Integer   | Aktueller Ladezustand (0-100%)
-Kantenbürste                | Integer   | Lebensdauer der Seitenbürste (0-100%)
-Walzenbürste                | Integer   | Lebensdauer der Hauptbürste (0-100%)
-Filter                      | Integer   | Lebensdauer des Filters (0-100%)
-Saugstufe                   | String    | Stärke der Saugstufe: Stark, Normal, Leise
-Reinigungsbereich           | Integer   | Quadratmeter der gereinigten Fläche (0-9999 m²)
-Reinigungszeit              | Integer   | Verbrauchte Zeit für Reinigung (0-9999min)
-Reinigungsgeschwindigkeit   | String    | Schnelles oder sorgfältiges Reinigen: Gründlich, Schnell
-Lautstärke                  | Integer   | Lautstärke der Sprachausgabe des Gerätes (0-100%)
-Sprache                     | String    | Verwendete Sprache für Ansagen: Englisch, Deutsch, Französisch, Russisch, Spanisch, Italienisch
+Name                        | Typ     | Beschreibung
+--------------------------- | ------- | ------------------------------
+Status                      | String  | Verfügbarkeitsstatus des Gerätes
+Betrieb                     | Boolean | Betriebszustand ein- bzw. ausschalten
+Modus                       | String  | Aktueller Gerätemodus
+Zustand                     | String  | Aktueller Betriebsstatus
+Richtungssteuerung          | String  | Steuerung der Richtungsbewegung
+Batterieladung              | Integer | Aktueller Ladezustand
+Kantenbürste                | Integer | Lebensdauer der Seitenbürste
+Walzenbürste                | Integer | Lebensdauer der Hauptbürste
+Filter                      | Integer | Lebensdauer des Filters
+Saugstufe                   | String  | Stärke der Saugstufe
+Reinigungsbereich           | Integer | Gereinigte Fläche
+Reinigungszeit              | Integer | Verbrauchte Zeit für Reinigung
+Reinigungsgeschwindigkeit   | String  | Schnelles oder sorgfältiges Reinigen
+Lautstärke                  | Integer | Lautstärke der Sprachausgabe des Gerätes
+Sprache                     | String  | Verwendete Sprache für Ansagen
 
-Statt Profilen werden Darstellungen verwendet, die das Modul direkt an den Variablen setzt.
+_Hinweis:_ Der Status wird zusätzlich über den Bridge-Status von tuya2mqtt (`<Base Topic>/bridge/status`) abgesichert: Meldet die Bridge _'offline'_ (z. B. per MQTT Last Will nach einem Absturz), wird der Status auf _'offline'_ gesetzt.
 
-Der Status wird zusätzlich über den Bridge-Status von tuya2mqtt (`<Base Topic>/bridge/status`) abgesichert: Meldet die Bridge _'offline'_ (z. B. per MQTT Last Will nach einem Absturz), wird der Status auf _'offline'_ gesetzt.
+### 6. Darstellungen
 
-### 6. Visualisierung
+Die Darstellungen werden direkt an den Statusvariablen hinterlegt, es werden keine Profile angelegt.
+
+Variable                    | Darstellung   | Werte
+--------------------------- | ------------- | ------------------------------
+Status                      | Wertanzeige   | Online (online), Offline (offline), Undefiniert (undefine)
+Betrieb                     | Schalter      | An / Aus
+Modus                       | Aufzählung    | Bereit, Intelligent, Kanten, Spiral, Zickzack, Laden
+Zustand                     | Wertanzeige   | Bereit, Intelligente Reinigung, Kantenreinigung, Punktuelle Reinigung, Wischen und Reinigen, Zum Aufladen, Aufladen, Voll aufgeladen, Pausiert, Reinigen, Schlafen
+Richtungssteuerung          | Aufzählung    | Vorwärts, Links drehen, Rechts drehen, Stop, Exit
+Batterieladung              | Wertanzeige   | 0 – 100 %
+Kantenbürste                | Wertanzeige   | 0 – 100 %
+Walzenbürste                | Wertanzeige   | 0 – 100 %
+Filter                      | Wertanzeige   | 0 – 100 %
+Saugstufe                   | Aufzählung    | Stark, Normal, Leise
+Reinigungsbereich           | Wertanzeige   | 0 – 9999 m²
+Reinigungszeit              | Wertanzeige   | 0 – 9999 min
+Reinigungsgeschwindigkeit   | Aufzählung    | Gründlich, Schnell
+Lautstärke                  | Schieberegler | 0 – 100 % (Schrittweite 1)
+Sprache                     | Aufzählung    | Englisch, Deutsch, Französisch, Russisch, Spanisch, Italienisch
+
+### 7. Visualisierung
 
 Man kann die Instanz bzw. Statusvariablen direkt in die Visualisierung verlinken.
 
-### 7. PHP-Befehlsreferenz
+### 8. Befehlsreferenz
 
 Das Modul stellt keine direkten Funktionsaufrufe zur Verfügung.
 
-### 8. Versionshistorie
+### 9. Versionshistorie
 
 v2.3.20261002
 

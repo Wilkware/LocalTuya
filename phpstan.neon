@@ -17,6 +17,7 @@ parameters:
             
     # Supress call to an undefined method OR function not found
     ignoreErrors:
+        - identifier: trait.unused
 
     # Supress ignore errors
     reportUnmatchedIgnoredErrors: false

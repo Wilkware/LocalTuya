@@ -13,11 +13,12 @@ Das Modul bietet die Möglichkeit, mit einem kompatiblen Deckenventilator über 
 1. [Funktionsumfang](#user-content-1-funktionsumfang)
 2. [Voraussetzungen](#user-content-2-voraussetzungen)
 3. [Installation](#user-content-3-installation)
-4. [Einrichten der Instanzen in Symcon](#user-content-4-einrichten-der-instanzen-in-symcon)
-5. [Statusvariablen und Profile](#user-content-5-statusvariablen-und-profile)
-6. [Visualisierung](#user-content-6-visualisierung)
-7. [PHP-Befehlsreferenz](#user-content-7-php-befehlsreferenz)
-8. [Versionshistorie](#user-content-8-versionshistorie)
+4. [Einrichtung](#user-content-4-einrichtung)
+5. [Statusvariablen](#user-content-5-statusvariablen)
+6. [Darstellungen](#user-content-6-darstellungen)
+7. [Visualisierung](#user-content-7-visualisierung)
+8. [Befehlsreferenz](#user-content-8-befehlsreferenz)
+9. [Versionshistorie](#user-content-9-versionshistorie)
 
 ### 1. Funktionsumfang
 
@@ -37,18 +38,18 @@ Getestet mit meinem Deckenventilator WINDCALM von CREATE.
 ### 3. Installation
 
 * Über den Modul Store die Bibliothek _LocalTuya_ installieren.
-* Alternativ Über das Modul-Control folgende URL hinzufügen.  
+* Alternativ über das Modul Control folgende URL hinzufügen.  
 `https://github.com/Wilkware/LocalTuya` oder `git://github.com/Wilkware/LocalTuya.git`
 
-### 4. Einrichten der Instanzen in Symcon
+### 4. Einrichtung
 
-* Unter "Instanz hinzufügen" ist das _'Tuya Deckenventilator'_-Modul unter dem Hersteller _'(Geräte)'_ aufgeführt.
+* Unter 'Instanz hinzufügen' ist das _Deckenventilator_-Modul (Alias: _Tuya Deckenventilator_) unter dem Hersteller '(Geräte)' aufgeführt.
 
 __Konfigurationsseite__:
 
 Einstellungsbereich:
 
-> 📳 Geräteinformationen …
+> 📳 Geräteinformationen ...
 
 Name                        | Beschreibung
 --------------------------- | ----------------------------------
@@ -64,34 +65,47 @@ AKTUALISIEREN           | Löst eine Nachricht aus, welche versucht alle Status(
 
 Da tuya2mqtt Werte nur noch bei Änderungen veröffentlicht, fordert das Modul beim Systemstart und nach dem Übernehmen der Konfiguration automatisch alle aktuellen Werte an (`get-states`).
 
-### 5. Statusvariablen und Darstellungen
+### 5. Statusvariablen
 
 Die Statusvariablen werden automatisch angelegt. Das Löschen einzelner kann hilfreich sein, z.B. wenn entsprechender Befehl/Status nicht vom Ventilator unterstützt wird.
 
-Name                        | Typ       | Beschreibung
---------------------------- | --------- | ----------------
-Status                      | String    | Verfügbarkeitsstatus: Online (online), Offline (offline) oder Undefiniert (undefine)
-Licht                       | Boolean   | Licht schalten (AN, AUS)
-Farbtemperatur              | Integer   | Farbtemperatur von 0 bis 1000 in drei Stufen: Kühl, Neutral, Warm
-Ventilator                  | Boolean   | Ventilator schalten (AN, AUS)
-Geschwindigkeit             | Integer   | Stufen von 1 bis 6 (schaltet den Ventilator bei Bedarf mit ein)
-Richtung                    | String    | 'Vorwärts' oder 'Rückwärts'
-Verbleibende Zeit           | Integer   | Restlaufzeit des eingestellten Timers (0 bis 540 min)
-Piepton                     | Boolean   | Bei jeder Schaltaktion einen Ton ausgeben (AN, AUS)
+Name                        | Typ     | Beschreibung
+--------------------------- | ------- | ------------------------------
+Status                      | String  | Verfügbarkeitsstatus des Gerätes
+Licht                       | Boolean | Licht schalten
+Farbtemperatur              | Integer | Farbtemperatur des Lichts
+Ventilator                  | Boolean | Ventilator schalten
+Geschwindigkeit             | Integer | Geschwindigkeitsstufe des Ventilators (schaltet den Ventilator bei Bedarf mit ein)
+Richtung                    | String  | Drehrichtung des Ventilators
+Verbleibende Zeit           | Integer | Restlaufzeit des eingestellten Timers
+Piepton                     | Boolean | Bei jeder Schaltaktion einen Ton ausgeben
 
-Statt Profilen werden Darstellungen verwendet, die das Modul direkt an den Variablen setzt.
+_Hinweis:_ Der Status wird zusätzlich über den Bridge-Status von tuya2mqtt (`<Base Topic>/bridge/status`) abgesichert: Meldet die Bridge _'offline'_ (z. B. per MQTT Last Will nach einem Absturz), wird der Status auf _'offline'_ gesetzt.
 
-Der Status wird zusätzlich über den Bridge-Status von tuya2mqtt (`<Base Topic>/bridge/status`) abgesichert: Meldet die Bridge _'offline'_ (z. B. per MQTT Last Will nach einem Absturz), wird der Status auf _'offline'_ gesetzt.
+### 6. Darstellungen
 
-### 6. Visualisierung
+Die Darstellungen werden direkt an den Statusvariablen hinterlegt, es werden keine Profile angelegt.
+
+Variable                    | Darstellung   | Werte
+--------------------------- | ------------- | ------------------------------
+Status                      | Wertanzeige   | Online (online), Offline (offline), Undefiniert (undefine)
+Licht                       | Schalter      | An / Aus
+Farbtemperatur              | Schieberegler | 0 – 1000 (Schrittweite 500): Kühl (0), Neutral (500), Warm (1000)
+Ventilator                  | Schalter      | An / Aus
+Geschwindigkeit             | Schieberegler | Stufe 1 – 6 (Schrittweite 1)
+Richtung                    | Aufzählung    | Vorwärts (forward), Rückwärts (reverse)
+Verbleibende Zeit           | Schieberegler | 0 – 540 min (Schrittweite 1)
+Piepton                     | Schalter      | An / Aus
+
+### 7. Visualisierung
 
 Man kann die Instanz bzw. Statusvariablen direkt in die Visualisierung verlinken.
 
-### 7. PHP-Befehlsreferenz
+### 8. Befehlsreferenz
 
 Das Modul stellt keine direkten Funktionsaufrufe zur Verfügung.
 
-### 8. Versionshistorie
+### 9. Versionshistorie
 
 v2.3.20261002
 
