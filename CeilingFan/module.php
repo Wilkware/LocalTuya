@@ -160,19 +160,9 @@ class CeilingFan extends IPSModuleStrict
      * @var array<string,mixed> State Presentation (Value)
      */
     private const T2MCF_PRESENTATION_STATE = [
-        'COLOR'         => -1,
-        'CONTENT_COLOR' => -1,
-        'DISPLAY_TYPE'  => 0,
-        'ICON'          => '',
-        'MULTILINE'     => false,
-        'OPTIONS'       => '[{"Caption":"Offline","ColorActive":true,"ColorValue":16711680,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal-slash","Value":"offline"},{"Caption":"Online","ColorActive":true,"ColorValue":65280,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal","Value":"online"},{"Caption":"Undefiniert","ColorActive":true,"ColorValue":255,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal-slash","Value":"undefine"}]',
-        'PERCENTAGE'    => false,
-        'PREFIX'        => '',
-        'PRESENTATION'  => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'PREVIEW_STYLE' => 1,
-        'SHOW_PREVIEW'  => true,
-        'SUFFIX'        => '',
-        'USAGE_TYPE'    => 0,
+        'ICON'         => '',
+        'OPTIONS'      => '[{"Caption":"Offline","ColorActive":true,"ColorValue":16711680,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal-slash","Value":"offline"},{"Caption":"Online","ColorActive":true,"ColorValue":65280,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal","Value":"online"},{"Caption":"Undefiniert","ColorActive":true,"ColorValue":255,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal-slash","Value":"undefine"}]',
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
     ];
 
     // -------------------------------------------------------------------------

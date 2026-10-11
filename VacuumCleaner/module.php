@@ -79,118 +79,51 @@ class VacuumCleaner extends IPSModuleStrict
      * @var array<string,mixed> Working Presentation (Value)
      */
     private const T2MVC_PRESENTATION_WORKING = [
-        'COLOR'               => -1,
-        'CONTENT_COLOR'       => -1,
-        'DISPLAY_TYPE'        => 0,
-        'ICON'                => 'vacuum-robot',
-        'MULTILINE'           => false,
-        'OPTIONS'             => '[{"Value":"standby","Caption":"Standby","IconActive":false,"IconValue":""},{"Value":"smart_clean","Caption":"Smart cleaning","IconActive":false,"IconValue":""},{"Value":"wall_clean","Caption":"Edge cleaning","IconActive":false,"IconValue":""},{"Value":"spot_clean","Caption":"Spot cleaning","IconActive":false,"IconValue":""},{"Value":"mop_clean","Caption":"Mopping and cleaning","IconActive":false,"IconValue":""},{"Value":"goto_charge","Caption":"Go charging","IconActive":false,"IconValue":""},{"Value":"charging","Caption":"Charging","IconActive":false,"IconValue":""},{"Value":"charge_done","Caption":"Charged","IconActive":false,"IconValue":""},{"Value":"paused","Caption":"Paused","IconActive":false,"IconValue":""},{"Value":"cleaning","Caption":"Cleaning","IconActive":false,"IconValue":""},{"Value":"sleep","Caption":"Sleep","IconActive":false,"IconValue":""}]',
-        'PERCENTAGE'          => false,
-        'PREFIX'              => '',
-        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'PREVIEW_STYLE'       => 1,
-        'SHOW_PREVIEW'        => true,
-        'SUFFIX'              => '',
-        'USAGE_TYPE'          => 0,
+        'ICON'         => 'vacuum-robot',
+        'OPTIONS'      => '[{"Value":"standby","Caption":"Standby","IconActive":false,"IconValue":""},{"Value":"smart_clean","Caption":"Smart cleaning","IconActive":false,"IconValue":""},{"Value":"wall_clean","Caption":"Edge cleaning","IconActive":false,"IconValue":""},{"Value":"spot_clean","Caption":"Spot cleaning","IconActive":false,"IconValue":""},{"Value":"mop_clean","Caption":"Mopping and cleaning","IconActive":false,"IconValue":""},{"Value":"goto_charge","Caption":"Go charging","IconActive":false,"IconValue":""},{"Value":"charging","Caption":"Charging","IconActive":false,"IconValue":""},{"Value":"charge_done","Caption":"Charged","IconActive":false,"IconValue":""},{"Value":"paused","Caption":"Paused","IconActive":false,"IconValue":""},{"Value":"cleaning","Caption":"Cleaning","IconActive":false,"IconValue":""},{"Value":"sleep","Caption":"Sleep","IconActive":false,"IconValue":""}]',
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
     ];
 
     /**
      * @var array<string,mixed> Battery Presentation (Value)
      */
     private const T2MVC_PRESENTATION_BATTERY = [
-        'COLOR'               => -1,
-        'CONTENT_COLOR'       => -1,
-        'DECIMAL_SEPARATOR'   => 'Client',
-        'DIGITS'              => 0,
-        'DISPLAY_TYPE'        => 0,
-        'ICON'                => 'Battery',
-        'INTERVALS'           => '[]',
-        'INTERVALS_ACTIVE'    => false,
-        'MAX'                 => 100,
-        'MIN'                 => 0,
-        'MULTILINE'           => false,
-        'PERCENTAGE'          => true,
-        'PREFIX'              => '',
-        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'PREVIEW_STYLE'       => 1,
-        'SHOW_PREVIEW'        => true,
-        'SUFFIX'              => ' %',
-        'THOUSANDS_SEPARATOR' => '',
-        'USAGE_TYPE'          => 0,
+        'ICON'         => 'Battery',
+        'MAX'          => 100,
+        'MIN'          => 0,
+        'PERCENTAGE'   => true,
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'SUFFIX'       => ' %',
     ];
 
     /**
      * @var array<string,mixed> Valve Presentation (Value)
      */
     private const T2MVC_PRESENTATION_VALVE = [
-        'COLOR'               => -1,
-        'CONTENT_COLOR'       => -1,
-        'DECIMAL_SEPARATOR'   => 'Client',
-        'DIGITS'              => 0,
-        'DISPLAY_TYPE'        => 0,
-        'ICON'                => 'Gauge',
-        'INTERVALS'           => '[]',
-        'INTERVALS_ACTIVE'    => false,
-        'MAX'                 => 100,
-        'MIN'                 => 0,
-        'MULTILINE'           => false,
-        'PERCENTAGE'          => true,
-        'PREFIX'              => '',
-        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'PREVIEW_STYLE'       => 1,
-        'SHOW_PREVIEW'        => true,
-        'SUFFIX'              => ' %',
-        'THOUSANDS_SEPARATOR' => '',
-        'USAGE_TYPE'          => 0,
+        'ICON'         => 'Gauge',
+        'MAX'          => 100,
+        'MIN'          => 0,
+        'PERCENTAGE'   => true,
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'SUFFIX'       => ' %',
     ];
 
     /**
      * @var array<string,mixed> Clean Area Presentation (Value)
      */
     private const T2MVC_PRESENTATION_CLEAN_AREA = [
-        'COLOR'               => -1,
-        'CONTENT_COLOR'       => -1,
-        'DECIMAL_SEPARATOR'   => 'Client',
-        'DIGITS'              => 0,
-        'DISPLAY_TYPE'        => 0,
-        'ICON'                => 'map',
-        'INTERVALS'           => '[]',
-        'INTERVALS_ACTIVE'    => false,
-        'MAX'                 => 9999,
-        'MIN'                 => 0,
-        'PERCENTAGE'          => false,
-        'PREFIX'              => '',
-        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'PREVIEW_STYLE'       => 1,
-        'SHOW_PREVIEW'        => true,
-        'SUFFIX'              => ' m²',
-        'THOUSANDS_SEPARATOR' => '',
-        'USAGE_TYPE'          => 0,
+        'ICON'         => 'map',
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'SUFFIX'       => ' m²',
     ];
 
     /**
      * @var array<string,mixed> Clean Time Presentation (Value)
      */
     private const T2MVC_PRESENTATION_CLEAN_TIME = [
-        'COLOR'               => -1,
-        'CONTENT_COLOR'       => -1,
-        'DECIMAL_SEPARATOR'   => 'Client',
-        'DIGITS'              => 0,
-        'DISPLAY_TYPE'        => 0,
-        'ICON'                => 'timer',
-        'INTERVALS'           => '[]',
-        'INTERVALS_ACTIVE'    => false,
-        'MAX'                 => 9999,
-        'MIN'                 => 0,
-        'MULTILINE'           => false,
-        'PERCENTAGE'          => false,
-        'PREFIX'              => '',
-        'PRESENTATION'        => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'PREVIEW_STYLE'       => 1,
-        'SHOW_PREVIEW'        => true,
-        'SUFFIX'              => ' min',
-        'THOUSANDS_SEPARATOR' => '',
-        'USAGE_TYPE'          => 0,
+        'ICON'         => 'timer',
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
+        'SUFFIX'       => ' min',
     ];
 
     /**
@@ -252,19 +185,9 @@ class VacuumCleaner extends IPSModuleStrict
      * @var array<string,mixed> State Presentation (Value)
      */
     private const T2MVC_PRESENTATION_STATE = [
-        'COLOR'         => -1,
-        'CONTENT_COLOR' => -1,
-        'DISPLAY_TYPE'  => 0,
-        'ICON'          => '',
-        'MULTILINE'     => false,
-        'OPTIONS'       => '[{"Caption":"Offline","ColorActive":true,"ColorValue":16711680,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal-slash","Value":"offline"},{"Caption":"Online","ColorActive":true,"ColorValue":65280,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal","Value":"online"},{"Caption":"Undefiniert","ColorActive":true,"ColorValue":255,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal-slash","Value":"undefine"}]',
-        'PERCENTAGE'    => false,
-        'PREFIX'        => '',
-        'PRESENTATION'  => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
-        'PREVIEW_STYLE' => 1,
-        'SHOW_PREVIEW'  => true,
-        'SUFFIX'        => '',
-        'USAGE_TYPE'    => 0,
+        'ICON'         => '',
+        'OPTIONS'      => '[{"Caption":"Offline","ColorActive":true,"ColorValue":16711680,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal-slash","Value":"offline"},{"Caption":"Online","ColorActive":true,"ColorValue":65280,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal","Value":"online"},{"Caption":"Undefiniert","ColorActive":true,"ColorValue":255,"ContentColorActive":false,"ContentColorValue":-1,"IconActive":true,"IconValue":"signal-slash","Value":"undefine"}]',
+        'PRESENTATION' => VARIABLE_PRESENTATION_VALUE_PRESENTATION,
     ];
 
     // -------------------------------------------------------------------------
